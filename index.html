@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="울산대학교 채용공고 생성기 - 전문적이고 일관된 채용공고를 쉽게 만들어보세요">
+  <meta name="theme-color" content="#2B7A3D">
+  <title>울산대학교 채용공고 생성기</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e8f0e5 100%);
+      min-height: 100vh;
+      padding: 2rem 1rem;
+      color: #333;
+    }
+
+    .main-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .header h1 {
+      font-size: 28px;
+      color: #2B7A3D;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .header p {
+      font-size: 14px;
+      color: #666;
+    }
+
+    .content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .form-section {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 2px 12px rgba(43, 122, 61, 0.1);
+      max-height: 900px;
+      overflow-y: auto;
+    }
+
+    .preview-section {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 2px 12px rgba(43, 122, 61, 0.1);
+      overflow-y: auto;
+      max-height: 900px;
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #2B7A3D;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid #D4E8D1;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #2B7A3D;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group label .required {
+      color: #D4870E;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 13px;
+      font-family: inherit;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #2B7A3D;
+      box-shadow: 0 0 0 3px rgba(43, 122, 61, 0.1);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+      line-height: 1.5;
+    }
+
+    .help-text {
+      font-size: 11px;
+      color: #999;
+      margin-top: 0.35rem;
+    }
+
+    .form-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-columns .form-group {
+      margin-bottom: 0;
+    }
+
+    .info-box {
+      background: #F0F7ED;
+      border-left: 4px solid #2B7A3D;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      border-radius: 6px;
+    }
+
+    .info-box strong {
+      color: #2B7A3D;
+      display: block;
+      margin-bottom: 0.35rem;
+      font-size: 12px;
+    }
+
+    .info-box p {
+      font-size: 12px;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+      position: sticky;
+      bottom: 0;
+      background: white;
+      padding: 1rem 0;
+      border-top: 1px solid #eee;
+    }
+
+    button {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background: #2B7A3D;
+      color: white;
+      flex: 1;
+      min-width: 120px;
+    }
+
+    .btn-primary:hover {
+      background: #1F5A2C;
+      box-shadow: 0 4px 12px rgba(43, 122, 61, 0.3);
+    }
+
+    .btn-secondary {
+      background: #F0F7ED;
+      color: #2B7A3D;
+      border: 1px solid #D4E8D1;
+    }
+
+    .btn-secondary:hover {
+      background: #E8F2E4;
+    }
+
+    .preview-content {
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .preview-empty {
+      color: #999;
+      text-align: center;
+      padding: 3rem 1rem;
+      font-size: 13px;
+    }
+
+    .recruitment-page {
+      background: white;
+    }
+
+    .page-header {
+      border-bottom: 3px solid #2B7A3D;
+      padding-bottom: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .page-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: #2B7A3D;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-meta {
+      font-size: 13px;
+      color: #666;
+    }
+
+    .key-info {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      background: #F8FBF7;
+      border-radius: 8px;
+    }
+
+    .key-info-item {
+      border-right: 1px solid #E0E8DC;
+      padding-right: 1rem;
+    }
+
+    .key-info-item:nth-child(even) {
+      border-right: none;
+      padding-right: 0;
+    }
+
+    .key-info-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: #999;
+      margin-bottom: 0.35rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .key-info-value {
+      font-size: 15px;
+      font-weight: 700;
+      color: #2B7A3D;
+    }
+
+    .content-section {
+      margin-bottom: 2.5rem;
+    }
+
+    .content-section-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #2B7A3D;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid #D4E8D1;
+    }
+
+    .content-section p {
+      margin-bottom: 0.75rem;
+      font-size: 13px;
+      line-height: 1.8;
+      color: #333;
+    }
+
+    .content-section ul {
+      margin-left: 1.5rem;
+      list-style: none;
+    }
+
+    .content-section li {
+      margin-bottom: 0.5rem;
+      font-size: 13px;
+      line-height: 1.8;
+      color: #333;
+      position: relative;
+      padding-left: 1rem;
+    }
+
+    .content-section li:before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #2B7A3D;
+      font-weight: bold;
+    }
+
+    /* 타임라인 스타일 */
+    .timeline {
+      margin-top: 1rem;
+      position: relative;
+      padding-left: 0;
+    }
+
+    .timeline:before {
+      content: '';
+      position: absolute;
+      left: 12px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #D4E8D1;
+    }
+
+    .timeline-item {
+      margin-bottom: 2rem;
+      position: relative;
+      padding-left: 50px;
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 0;
+      top: 1px;
+      width: 28px;
+      height: 28px;
+      background: white;
+      border: 3px solid #2B7A3D;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: bold;
+      color: #2B7A3D;
+    }
+
+    .timeline-date {
+      font-size: 13px;
+      font-weight: 600;
+      color: #2B7A3D;
+      margin-bottom: 0.25rem;
+    }
+
+    .timeline-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1F5A2C;
+      margin-bottom: 0.35rem;
+    }
+
+    .timeline-event {
+      font-size: 12px;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    .faq-section {
+      background: #F8FBF7;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .faq-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #2B7A3D;
+      margin-bottom: 1rem;
+    }
+
+    .faq-item {
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #E0E8DC;
+      padding-bottom: 1rem;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .faq-question {
+      font-size: 13px;
+      font-weight: 600;
+      color: #2B7A3D;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+    }
+
+    .faq-answer {
+      font-size: 12px;
+      color: #666;
+      line-height: 1.6;
+      display: none;
+    }
+
+    .faq-answer.show {
+      display: block;
+    }
+
+    .success-message {
+      position: fixed;
+      top: 2rem;
+      right: 2rem;
+      background: #2B7A3D;
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      display: none;
+      z-index: 1000;
+      animation: slideIn 0.3s ease;
+    }
+
+    .success-message.show {
+      display: block;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(400px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .copy-btn, .download-btn {
+      flex: 1;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: none;
+    }
+
+    .copy-btn.show, .download-btn.show {
+      display: block;
+    }
+
+    .copy-btn {
+      background: #2B7A3D;
+      color: white;
+    }
+
+    .copy-btn:hover {
+      background: #1F5A2C;
+    }
+
+    .download-btn {
+      background: #F0F7ED;
+      color: #2B7A3D;
+    }
+
+    .download-btn:hover {
+      background: #E8F2E4;
+    }
+
+    @media (max-width: 1024px) {
+      .content {
+        grid-template-columns: 1fr;
+      }
+
+      .form-section,
+      .preview-section {
+        max-height: 600px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .form-columns {
+        grid-template-columns: 1fr;
+      }
+
+      .key-info {
+        grid-template-columns: 1fr;
+      }
+
+      .key-info-item {
+        border-right: none;
+        padding-right: 0;
+        border-bottom: 1px solid #E0E8DC;
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .key-info-item:last-child {
+        border-bottom: none;
+      }
+
+      .page-title {
+        font-size: 20px;
+      }
+
+      .button-group {
+        position: static;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="main-container">
+  <div class="header">
+    <h1>울산대학교 채용공고 생성기</h1>
+    <p>전문적이고 일관된 채용공고를 쉽게 만들어보세요</p>
+  </div>
+
+  <div class="content">
+    <!-- 입력 폼 -->
+    <div class="form-section">
+      <div class="section-title">📋 기본 정보</div>
+
+      <div class="info-box">
+        <strong>💡 팁</strong>
+        <p>필수 항목(*)만 입력해도 공고가 생성됩니다. 선택 항목은 있으면 추가하세요.</p>
+      </div>
+
+      <form id="recruitmentForm">
+        <div class="form-columns">
+          <div class="form-group">
+            <label>공고명 <span class="required">*</span></label>
+            <input type="text" id="positionTitle" placeholder="예) 인권센터 계약직" required>
+            <div class="help-text">부서명 + 직급/직위를 간단히</div>
+          </div>
+          <div class="form-group">
+            <label>모집 부서 <span class="required">*</span></label>
+            <input type="text" id="department" placeholder="예) 인권센터" required>
+          </div>
+        </div>
+
+        <div class="form-columns">
+          <div class="form-group">
+            <label>고용 형태 <span class="required">*</span></label>
+            <select id="employmentType" required>
+              <option value="">선택하세요</option>
+              <option>정규직</option>
+              <option>기간제</option>
+              <option>무기계약직</option>
+              <option>계약직</option>
+              <option>시간제</option>
+              <option>파견직</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>모집 인원 <span class="required">*</span></label>
+            <input type="text" id="headcount" placeholder="예) 1명" required>
+          </div>
+        </div>
+
+        <div class="form-columns">
+          <div class="form-group">
+            <label>근무 시작 예정일 <span class="required">*</span></label>
+            <input type="date" id="startDate" required>
+          </div>
+          <div class="form-group">
+            <label>지원 마감일 <span class="required">*</span></label>
+            <input type="date" id="deadline" required>
+          </div>
+        </div>
+
+        <hr style="margin: 2rem 0; border: none; border-top: 1px solid #eee;">
+        <div class="section-title">상세 정보 (선택)</div>
+
+        <div class="form-group">
+          <label>직급/직위</label>
+          <input type="text" id="position" placeholder="예) 선임금">
+        </div>
+
+        <div class="form-columns">
+          <div class="form-group">
+            <label>급여/연봉</label>
+            <input type="text" id="salary" placeholder="예) 월 291만원 ~ 349만원">
+          </div>
+          <div class="form-group">
+            <label>근무 시간</label>
+            <input type="text" id="workHours" placeholder="예) 주 5일, 09:00 ~ 18:00">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>주요 업무</label>
+          <textarea id="responsibilities" placeholder="- 인권 관련 업무&#10;- 상담 및 조사&#10;(각 줄마다 하나의 업무)"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>지원 자격</label>
+          <textarea id="qualifications" placeholder="- 대학 졸업자&#10;- 관련 경험 2년 이상&#10;(각 줄마다 하나의 자격)"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>우대 사항</label>
+          <textarea id="preferences" placeholder="- 인권센터 근무 경험자&#10;- 상담 관련 자격증 소유자"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>제출 서류</label>
+          <textarea id="documents" placeholder="- 이력서 및 자기소개서&#10;- 졸업증명서"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>전형 일정</label>
+          <textarea id="schedule" placeholder="2026.3.16(월) ~ 3.27(금) 13:00&#10;지원서 접수&#10;온라인학과 지원페이지에서 접수&#10;&#10;2026.3.30(월) 18:00&#10;1차 서면심사 결과 발표"></textarea>
+          <div class="help-text">각 일정을 빈 줄로 구분하면 타임라인으로 자동 변환됩니다</div>
+        </div>
+
+        <div class="form-group">
+          <label>추가 정보 / FAQ</label>
+          <textarea id="additionalInfo" placeholder="예) Q. 지원 자격이 없어도 지원할 수 있나요?&#10;A. 관련 경험이 있으시면 상담 바랍니다."></textarea>
+          <div class="help-text">Q와 A를 줄바꿈으로 구분하면 자동으로 FAQ로 표시됩니다</div>
+        </div>
+
+        <div class="form-group">
+          <label>문의 연락처</label>
+          <input type="text" id="contact" placeholder="예) 인사팀 (052-259-1054)">
+        </div>
+
+        <div class="button-group">
+          <button type="button" class="btn-primary" onclick="generatePreview()">✓ 미리보기 생성</button>
+          <button type="button" class="btn-secondary" onclick="resetForm()">초기화</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- 미리보기 -->
+    <div class="preview-section">
+      <div class="section-title">👁️ 미리보기</div>
+      <div id="previewContainer" class="preview-content">
+        <div class="preview-empty">정보를 입력하고 "미리보기 생성" 버튼을 클릭하세요.</div>
+      </div>
+
+      <div class="action-buttons">
+        <button class="copy-btn" id="copyBtn" onclick="copyHTML()">📋 HTML 복사</button>
+        <button class="download-btn" id="downloadBtn" onclick="downloadHTML()">⬇️ 파일 다운로드</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="successMessage" class="success-message">✓ 복사되었습니다!</div>
+
+<script>
+function parseScheduleBlock(text) {
+  const lines = text.trim().split('\n').filter(l => l.trim());
+  if (lines.length === 0) return null;
+  
+  return {
+    dateTime: lines[0],
+    title: lines[1] || '',
+    description: lines.slice(2).join('<br>') || ''
+  };
+}
+
+function generatePreview() {
+  const title = document.getElementById('positionTitle').value;
+  const dept = document.getElementById('department').value;
+  const type = document.getElementById('employmentType').value;
+  const count = document.getElementById('headcount').value;
+  const startDate = document.getElementById('startDate').value;
+  const deadline = document.getElementById('deadline').value;
+
+  if (!title || !dept || !type || !count || !startDate || !deadline) {
+    alert('필수 항목을 모두 입력해주세요.');
+    return;
+  }
+
+  const position = document.getElementById('position').value;
+  const salary = document.getElementById('salary').value;
+  const workHours = document.getElementById('workHours').value;
+  const responsibilities = document.getElementById('responsibilities').value;
+  const qualifications = document.getElementById('qualifications').value;
+  const preferences = document.getElementById('preferences').value;
+  const documents = document.getElementById('documents').value;
+  const schedule = document.getElementById('schedule').value;
+  const additionalInfo = document.getElementById('additionalInfo').value;
+  const contact = document.getElementById('contact').value;
+
+  const formatDate = (dateStr) => {
+    if (!dateStr) return '';
+    const date = new Date(dateStr + 'T00:00:00');
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const days = ['일', '월', '화', '수', '목', '금', '토'];
+    const dayName = days[date.getDay()];
+    return `${year}.${month}.${day}(${dayName})`;
+  };
+
+  const listToHTML = (text) => {
+    if (!text) return '';
+    return text
+      .split('\n')
+      .filter(line => line.trim())
+      .map(line => `<li>${line.trim()}</li>`)
+      .join('');
+  };
+
+  const scheduleHTML = schedule ? `
+    <div class="content-section">
+      <div class="content-section-title">전형 일정</div>
+      <div class="timeline">
+        ${schedule.split('\n\n').filter(s => s.trim()).map((item, idx) => {
+          const parsed = parseScheduleBlock(item);
+          if (!parsed) return '';
+          return `
+            <div class="timeline-item">
+              <div class="timeline-dot">${idx + 1}</div>
+              <div class="timeline-date">${parsed.dateTime}</div>
+              ${parsed.title ? `<div class="timeline-title">${parsed.title}</div>` : ''}
+              ${parsed.description ? `<div class="timeline-event">${parsed.description}</div>` : ''}
+            </div>
+          `;
+        }).join('')}
+      </div>
+    </div>
+  ` : '';
+
+  const faqHTML = additionalInfo ? `
+    <div class="faq-section">
+      <div class="faq-title">자주 묻는 질문</div>
+      ${additionalInfo.split('\n\n').filter(q => q.trim()).map((qa, idx) => {
+        const lines = qa.split('\n');
+        const q_text = lines[0].replace(/^Q\.\s*/, '').replace(/^질문\.\s*/, '');
+        const a_text = lines.slice(1).join('<br>').replace(/^A\.\s*/, '').replace(/^답변\.\s*/, '');
+        return `
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">❓ ${q_text}</div>
+            <div class="faq-answer">${a_text}</div>
+          </div>
+        `;
+      }).join('')}
+    </div>
+  ` : '';
+
+  const html = `
+    <div class="recruitment-page">
+      <div class="page-header">
+        <div class="page-title">${title}</div>
+        <div class="page-meta">${dept}${position ? ' · ' + position : ''} · ${type}</div>
+      </div>
+
+      <div class="key-info">
+        <div class="key-info-item">
+          <div class="key-info-label">고용 형태</div>
+          <div class="key-info-value">${type}</div>
+        </div>
+        <div class="key-info-item">
+          <div class="key-info-label">모집 인원</div>
+          <div class="key-info-value">${count}</div>
+        </div>
+        ${salary ? `
+        <div class="key-info-item">
+          <div class="key-info-label">급여</div>
+          <div class="key-info-value">${salary}</div>
+        </div>
+        ` : ''}
+        <div class="key-info-item">
+          <div class="key-info-label">근무 시작</div>
+          <div class="key-info-value">${formatDate(startDate)}</div>
+        </div>
+        <div class="key-info-item">
+          <div class="key-info-label">지원 마감</div>
+          <div class="key-info-value">${formatDate(deadline)}</div>
+        </div>
+        ${workHours ? `
+        <div class="key-info-item">
+          <div class="key-info-label">근무 시간</div>
+          <div class="key-info-value">${workHours}</div>
+        </div>
+        ` : ''}
+      </div>
+
+      ${responsibilities ? `
+      <div class="content-section">
+        <div class="content-section-title">주요 업무</div>
+        <ul>${listToHTML(responsibilities)}</ul>
+      </div>
+      ` : ''}
+
+      ${qualifications ? `
+      <div class="content-section">
+        <div class="content-section-title">지원 자격</div>
+        <ul>${listToHTML(qualifications)}</ul>
+      </div>
+      ` : ''}
+
+      ${preferences ? `
+      <div class="content-section">
+        <div class="content-section-title">우대 사항</div>
+        <ul>${listToHTML(preferences)}</ul>
+      </div>
+      ` : ''}
+
+      ${documents ? `
+      <div class="content-section">
+        <div class="content-section-title">제출 서류</div>
+        <ul>${listToHTML(documents)}</ul>
+      </div>
+      ` : ''}
+
+      ${scheduleHTML}
+
+      ${faqHTML}
+
+      ${contact ? `
+      <div class="content-section">
+        <div class="content-section-title">문의</div>
+        <p>${contact}</p>
+      </div>
+      ` : ''}
+    </div>
+  `;
+
+  document.getElementById('previewContainer').innerHTML = html;
+  document.getElementById('copyBtn').classList.add('show');
+  document.getElementById('downloadBtn').classList.add('show');
+
+  setTimeout(() => {
+    document.querySelector('.preview-section').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }, 100);
+}
+
+function toggleFAQ(element) {
+  const answer = element.nextElementSibling;
+  answer.classList.toggle('show');
+}
+
+function getFullHTML() {
+  const title = document.getElementById('positionTitle').value;
+  const previewHTML = document.getElementById('previewContainer').innerHTML;
+  
+  return `<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${title}</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+      background: #f5f7fa;
+      padding: 3rem 2rem;
+      color: #333;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      padding: 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(43, 122, 61, 0.1);
+    }
+    .page-header {
+      border-bottom: 3px solid #2B7A3D;
+      padding-bottom: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .page-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: #2B7A3D;
+      margin-bottom: 0.5rem;
+    }
+    .page-meta {
+      font-size: 13px;
+      color: #666;
+    }
+    .key-info {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      background: #F8FBF7;
+      border-radius: 8px;
+    }
+    .key-info-item {
+      border-right: 1px solid #E0E8DC;
+      padding-right: 1rem;
+    }
+    .key-info-item:nth-child(even) {
+      border-right: none;
+      padding-right: 0;
+    }
+    .key-info-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: #999;
+      margin-bottom: 0.35rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .key-info-value {
+      font-size: 15px;
+      font-weight: 700;
+      color: #2B7A3D;
+    }
+    .content-section {
+      margin-bottom: 2.5rem;
+    }
+    .content-section-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #2B7A3D;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid #D4E8D1;
+    }
+    .content-section ul {
+      margin-left: 1.5rem;
+      list-style: none;
+    }
+    .content-section li {
+      margin-bottom: 0.75rem;
+      font-size: 13px;
+      line-height: 1.8;
+      color: #333;
+      position: relative;
+      padding-left: 1rem;
+    }
+    .content-section li:before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #2B7A3D;
+      font-weight: bold;
+    }
+    .timeline {
+      margin-top: 1rem;
+      position: relative;
+      padding-left: 0;
+    }
+    .timeline:before {
+      content: '';
+      position: absolute;
+      left: 12px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #D4E8D1;
+    }
+    .timeline-item {
+      margin-bottom: 2rem;
+      position: relative;
+      padding-left: 50px;
+    }
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+    .timeline-dot {
+      position: absolute;
+      left: 0;
+      top: 1px;
+      width: 28px;
+      height: 28px;
+      background: white;
+      border: 3px solid #2B7A3D;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: bold;
+      color: #2B7A3D;
+    }
+    .timeline-date {
+      font-size: 13px;
+      font-weight: 600;
+      color: #2B7A3D;
+      margin-bottom: 0.25rem;
+    }
+    .timeline-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1F5A2C;
+      margin-bottom: 0.35rem;
+    }
+    .timeline-event {
+      font-size: 12px;
+      color: #666;
+      line-height: 1.6;
+    }
+    .faq-section {
+      background: #F8FBF7;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+    }
+    .faq-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #2B7A3D;
+      margin-bottom: 1rem;
+    }
+    .faq-item {
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #E0E8DC;
+      padding-bottom: 1rem;
+    }
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+    .faq-question {
+      font-size: 13px;
+      font-weight: 600;
+      color: #2B7A3D;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+    }
+    .faq-answer {
+      font-size: 12px;
+      color: #666;
+      line-height: 1.6;
+      display: none;
+    }
+    .faq-answer.show {
+      display: block;
+    }
+    .recruitment-page {
+      background: white;
+    }
+    .content-section p {
+      margin-bottom: 0.75rem;
+      font-size: 13px;
+      line-height: 1.8;
+      color: #333;
+    }
+    @media (max-width: 768px) {
+      .container {
+        padding: 1.5rem;
+      }
+      .page-title {
+        font-size: 20px;
+      }
+      .key-info {
+        grid-template-columns: 1fr;
+      }
+      .key-info-item {
+        border-right: none;
+        border-bottom: 1px solid #E0E8DC;
+        padding-right: 0;
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;
+      }
+      .key-info-item:last-child {
+        border-bottom: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    ${previewHTML}
+  </div>
+  <script>
+    function toggleFAQ(element) {
+      const answer = element.nextElementSibling;
+      answer.classList.toggle('show');
+    }
+  <\/script>
+</body>
+</html>`;
+}
+
+function copyHTML() {
+  const html = getFullHTML();
+  navigator.clipboard.writeText(html).then(() => {
+    const msg = document.getElementById('successMessage');
+    msg.classList.add('show');
+    setTimeout(() => msg.classList.remove('show'), 2000);
+  }).catch(() => {
+    alert('복사에 실패했습니다. 다시 시도해주세요.');
+  });
+}
+
+function downloadHTML() {
+  const title = document.getElementById('positionTitle').value;
+  const html = getFullHTML();
+  const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = `채용공고_${title}.html`;
+  link.click();
+}
+
+function resetForm() {
+  document.getElementById('recruitmentForm').reset();
+  document.getElementById('previewContainer').innerHTML = '<div class="preview-empty">정보를 입력하고 "미리보기 생성" 버튼을 클릭하세요.</div>';
+  document.getElementById('copyBtn').classList.remove('show');
+  document.getElementById('downloadBtn').classList.remove('show');
+}
+
+document.getElementById('recruitmentForm').addEventListener('keypress', (e) => {
+  if (e.key === 'Enter' && e.ctrlKey) {
+    generatePreview();
+  }
+});
+</script>
+
+</body>
+</html>
