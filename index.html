@@ -553,12 +553,12 @@
         <div class="form-columns">
           <div class="form-group">
             <label>공고명 <span class="required">*</span></label>
-            <input type="text" id="positionTitle" placeholder="예) 인권센터 계약직" required>
+            <input type="text" id="positionTitle" placeholder="예) A처 B팀 전문상담원 모집" required>
             <div class="help-text">부서명 + 직급/직위를 간단히</div>
           </div>
           <div class="form-group">
             <label>모집 부서 <span class="required">*</span></label>
-            <input type="text" id="department" placeholder="예) 인권센터" required>
+            <input type="text" id="department" placeholder="예) A처 B팀" required>
           </div>
         </div>
 
@@ -567,13 +567,8 @@
             <label>고용 형태 <span class="required">*</span></label>
             <select id="employmentType" required>
               <option value="">선택하세요</option>
-              <option>정규직</option>
-              <option>기간제</option>
-              <option>무기계약직</option>
               <option>계약직</option>
-              <option>시간제</option>
-              <option>파견직</option>
-            </select>
+             </select>
           </div>
           <div class="form-group">
             <label>모집 인원 <span class="required">*</span></label>
@@ -584,11 +579,11 @@
         <div class="form-columns">
           <div class="form-group">
             <label>근무 시작 예정일 <span class="required">*</span></label>
-            <input type="date" id="startDate" required>
+            <input type="date" id="startDate" required onchange="document.getElementById('deadline').focus();">
           </div>
           <div class="form-group">
             <label>지원 마감일 <span class="required">*</span></label>
-            <input type="date" id="deadline" required>
+            <input type="date" id="deadline" required onchange="document.getElementById('position').focus();">
           </div>
         </div>
 
