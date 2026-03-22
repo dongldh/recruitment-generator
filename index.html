@@ -6,7 +6,7 @@
   <title>울산대학교 채용공고 생성기</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -15,15 +15,15 @@
     }
 
     body {
-      font-family: 'Noto Sans KR', 'Malgun Gothic', '맑은 고딕', 'Apple SD Gothic Neo', sans-serif;
-      background: linear-gradient(135deg, #f5f7fa 0%, #e8f0e5 100%);
+      font-family: 'Nanum Gothic', 'Malgun Gothic', '맑은 고딕', sans-serif;
+      background: #f5f5f5;
       min-height: 100vh;
       padding: 2rem 1rem;
-      color: #333;
+      color: #2d3748;
     }
 
     .main-container {
-      max-width: 1400px;
+      max-width: 1600px;
       margin: 0 auto;
     }
 
@@ -31,18 +31,24 @@
       text-align: center;
       margin-bottom: 3rem;
       position: relative;
+      background: white;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
     }
 
     .header h1 {
-      font-size: 28px;
-      color: #5F5E5A;
+      font-size: 32px;
+      font-weight: 800;
+      color: #2d3748;
       margin-bottom: 0.5rem;
-      font-weight: 700;
+      letter-spacing: -0.5px;
     }
 
     .header p {
       font-size: 14px;
-      color: #666;
+      color: #718096;
+      font-weight: 400;
     }
 
     .content {
@@ -54,191 +60,213 @@
 
     .form-section {
       background: white;
-      border-radius: 12px;
-      padding: 2rem;
-      box-shadow: 0 2px 12px rgba(43, 122, 61, 0.1);
+      border-radius: 16px;
+      padding: 2.5rem;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
       max-height: 900px;
       overflow-y: auto;
+    }
+
+    .form-section::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .form-section::-webkit-scrollbar-track {
+      background: #f7fafc;
+      border-radius: 10px;
+    }
+
+    .form-section::-webkit-scrollbar-thumb {
+      background: #cbd5e0;
+      border-radius: 10px;
+    }
+
+    .form-section::-webkit-scrollbar-thumb:hover {
+      background: #a0aec0;
     }
 
     .preview-section {
       background: white;
-      border-radius: 12px;
-      padding: 2rem;
-      box-shadow: 0 2px 12px rgba(43, 122, 61, 0.1);
+      border-radius: 16px;
+      padding: 2.5rem;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
       overflow-y: auto;
       max-height: 900px;
     }
 
+    .preview-section::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .preview-section::-webkit-scrollbar-track {
+      background: #f7fafc;
+      border-radius: 10px;
+    }
+
+    .preview-section::-webkit-scrollbar-thumb {
+      background: #cbd5e0;
+      border-radius: 10px;
+    }
+
+    .preview-section::-webkit-scrollbar-thumb:hover {
+      background: #a0aec0;
+    }
+
     .section-title {
-      font-size: 16px;
-      font-weight: 700;
-      color: #5F5E5A;
-      margin-bottom: 1.5rem;
+      font-size: 18px;
+      font-weight: 800;
+      color: #2d3748;
+      margin-bottom: 2rem;
       padding-bottom: 1rem;
-      border-bottom: 2px solid #D4E8D1;
+      border-bottom: 3px solid #e2e8f0;
+      letter-spacing: -0.3px;
     }
 
     .form-group {
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.8rem;
     }
 
     .form-group label {
       display: block;
-      font-size: 13px;
-      font-weight: 600;
-      color: #5F5E5A;
-      margin-bottom: 0.5rem;
+      font-size: 14px;
+      font-weight: 700;
+      color: #4a5568;
+      margin-bottom: 0.7rem;
+      letter-spacing: -0.2px;
     }
 
     .form-group label .required {
-      color: #D4870E;
+      color: #e53e3e;
+      margin-left: 2px;
     }
 
     .form-group input,
     .form-group select,
     .form-group textarea {
       width: 100%;
-      padding: 0.75rem;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      font-size: 13px;
-      font-family: inherit;
+      padding: 0.9rem 1rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 10px;
+      font-size: 14px;
+      font-family: 'Nanum Gothic', sans-serif;
+      font-weight: 400;
+      transition: all 0.2s;
+      background: #f7fafc;
+    }
+
+    .form-group input:hover,
+    .form-group select:hover,
+    .form-group textarea:hover {
+      border-color: #cbd5e0;
+      background: white;
     }
 
     .form-group input:focus,
     .form-group select:focus,
     .form-group textarea:focus {
       outline: none;
-      border-color: #2B7A3D;
-      box-shadow: 0 0 0 3px rgba(43, 122, 61, 0.1);
+      border-color: #4a5568;
+      background: white;
+      box-shadow: 0 0 0 3px rgba(74, 85, 104, 0.1);
     }
 
     .form-group textarea {
       resize: vertical;
-      min-height: 100px;
+      min-height: 120px;
+      line-height: 1.6;
     }
 
     .form-columns {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1rem;
+      gap: 1.2rem;
     }
 
     .form-columns .form-group {
       margin-bottom: 0;
     }
 
-    .ai-section {
-      margin-bottom: 2rem;
-      padding: 1rem;
-      background: #f0f7ed;
-      border-radius: 8px;
-      border-left: 4px solid #2B7A3D;
-    }
-
-    .ai-section label {
-      display: block;
-      font-size: 13px;
-      font-weight: 600;
-      color: #2B7A3D;
-      margin-bottom: 0.5rem;
-    }
-
-    .ai-section textarea {
-      width: 100%;
-      padding: 0.75rem;
-      border: 1px solid #d4e8d1;
-      border-radius: 6px;
-      font-size: 13px;
-      font-family: inherit;
-      min-height: 80px;
-      margin-bottom: 0.75rem;
-    }
-
-    .ai-status {
-      font-size: 11px;
-      color: #999;
-      margin-top: 0.35rem;
-      line-height: 1.6;
-    }
-    
-    .ai-status code {
-      background: #f0f0f0;
-      padding: 2px 6px;
-      border-radius: 3px;
-      font-family: 'Consolas', 'Monaco', monospace;
-      font-size: 10px;
-    }
-    
-    .ai-status strong {
-      color: #2B7A3D;
-    }
-
     .button-group {
       display: flex;
-      gap: 0.75rem;
-      margin-top: 2rem;
+      gap: 1rem;
+      margin-top: 2.5rem;
       flex-wrap: wrap;
     }
 
     button {
-      padding: 0.75rem 1.5rem;
+      padding: 1rem 1.8rem;
       border: none;
-      border-radius: 6px;
-      font-size: 13px;
-      font-weight: 600;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
       cursor: pointer;
       transition: all 0.2s;
+      font-family: 'Nanum Gothic', sans-serif;
+      letter-spacing: -0.2px;
     }
 
     .btn-primary {
-      background: #2B7A3D;
+      background: #2d3748;
       color: white;
       flex: 1;
-      min-width: 120px;
+      min-width: 140px;
+      box-shadow: 0 4px 15px rgba(45, 55, 72, 0.2);
     }
 
     .btn-primary:hover {
-      background: #1F5A2C;
+      background: #1a202c;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(45, 55, 72, 0.3);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
     }
 
     .btn-secondary {
-      background: #F0F7ED;
-      color: #2B7A3D;
-      border: 1px solid #D4E8D1;
+      background: white;
+      color: #4a5568;
+      border: 2px solid #e2e8f0;
     }
 
     .btn-secondary:hover {
-      background: #E8F2E4;
+      background: #f7fafc;
+      border-color: #cbd5e0;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary:active {
+      transform: translateY(0);
     }
 
     .preview-empty {
-      color: #999;
+      color: #a0aec0;
       text-align: center;
-      padding: 3rem 1rem;
-      font-size: 13px;
+      padding: 4rem 1rem;
+      font-size: 14px;
+      font-weight: 400;
     }
 
     .guide-button {
       position: absolute;
-      top: 0;
-      right: 0;
-      background: #2B7A3D;
+      top: 2rem;
+      right: 2rem;
+      background: #2d3748;
       color: white;
       border: none;
-      padding: 0.6rem 1.2rem;
-      border-radius: 6px;
+      padding: 0.7rem 1.5rem;
+      border-radius: 10px;
       font-size: 13px;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
       transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(45, 55, 72, 0.2);
     }
 
     .guide-button:hover {
-      background: #1F5A2C;
+      background: #1a202c;
       transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(43, 122, 61, 0.3);
+      box-shadow: 0 6px 20px rgba(45, 55, 72, 0.3);
     }
 
     .modal {
@@ -249,8 +277,9 @@
       top: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0,0,0,0.5);
+      background-color: rgba(0,0,0,0.6);
       animation: fadeIn 0.3s;
+      backdrop-filter: blur(4px);
     }
 
     @keyframes fadeIn {
@@ -261,14 +290,15 @@
     .modal-content {
       background-color: white;
       margin: 5% auto;
-      padding: 2rem;
-      border-radius: 12px;
+      padding: 2.5rem;
+      border-radius: 16px;
       width: 90%;
-      max-width: 600px;
+      max-width: 700px;
       max-height: 80vh;
       overflow-y: auto;
       position: relative;
       animation: slideIn 0.3s;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
     }
 
     @keyframes slideIn {
@@ -278,11 +308,11 @@
 
     .close-modal {
       position: absolute;
-      top: 1rem;
-      right: 1rem;
+      top: 1.5rem;
+      right: 1.5rem;
       font-size: 28px;
       font-weight: bold;
-      color: #999;
+      color: #a0aec0;
       cursor: pointer;
       border: none;
       background: none;
@@ -290,31 +320,36 @@
       width: 30px;
       height: 30px;
       line-height: 30px;
+      transition: all 0.2s;
     }
 
     .close-modal:hover {
-      color: #333;
+      color: #2d3748;
+      transform: rotate(90deg);
     }
 
     .guide-content h2 {
-      color: #2B7A3D;
-      font-size: 20px;
-      margin-bottom: 1rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 2px solid #D4E8D1;
+      color: #2d3748;
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 3px solid #e2e8f0;
     }
 
     .guide-content h3 {
-      color: #2B7A3D;
-      font-size: 16px;
-      margin-top: 1.5rem;
-      margin-bottom: 0.8rem;
+      color: #4a5568;
+      font-size: 18px;
+      font-weight: 700;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
     }
 
     .guide-content p {
       line-height: 1.8;
       margin-bottom: 1rem;
-      color: #555;
+      color: #4a5568;
+      font-weight: 400;
     }
 
     .guide-content ul, .guide-content ol {
@@ -323,35 +358,40 @@
     }
 
     .guide-content li {
-      margin-bottom: 0.5rem;
-      line-height: 1.6;
-      color: #555;
+      margin-bottom: 0.7rem;
+      line-height: 1.7;
+      color: #4a5568;
+      font-weight: 400;
+    }
+
+    .guide-content strong {
+      font-weight: 700;
+      color: #2d3748;
     }
 
     .guide-content .tip-box {
-      background: #F0F7ED;
-      border-left: 4px solid #2B7A3D;
-      padding: 1rem;
-      margin: 1rem 0;
-      border-radius: 4px;
+      background: #f7fafc;
+      border-left: 4px solid #4a5568;
+      padding: 1.2rem;
+      margin: 1.5rem 0;
+      border-radius: 8px;
     }
 
     .guide-content .tip-box strong {
-      color: #2B7A3D;
+      color: #2d3748;
       display: block;
-      margin-bottom: 0.5rem;
-    }
-    
-    .guide-content code {
-      background: #f0f0f0;
-      padding: 2px 6px;
-      border-radius: 3px;
-      font-family: 'Consolas', 'Monaco', monospace;
-      font-size: 12px;
-      color: #d63384;
+      margin-bottom: 0.7rem;
+      font-weight: 800;
     }
 
-    @media (max-width: 1024px) {
+    hr {
+      margin: 2rem 0;
+      border: none;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #e2e8f0, transparent);
+    }
+
+    @media (max-width: 1200px) {
       .content {
         grid-template-columns: 1fr;
       }
@@ -359,7 +399,27 @@
       .guide-button {
         position: static;
         display: block;
-        margin: 1rem auto 0;
+        margin: 1.5rem auto 0;
+        width: fit-content;
+      }
+    }
+
+    /* 반응형 */
+    @media (max-width: 768px) {
+      .form-columns {
+        grid-template-columns: 1fr;
+      }
+
+      .header h1 {
+        font-size: 24px;
+      }
+
+      .button-group {
+        flex-direction: column;
+      }
+
+      .btn-primary, .btn-secondary {
+        width: 100%;
       }
     }
   </style>
@@ -368,21 +428,13 @@
 
 <div class="main-container">
   <div class="header">
-    <h1>울산대학교 채용공고 생성기 ver1.0 (2026.03.23.)</h1>
-    <p>제작: 울산대학교 총무처 총무인사팀</p>
+    <h1>울산대학교 채용공고 생성기 <span style="font-size: 14px; font-weight: 400; color: #a0aec0;">v1.0</span></h1>
     <button class="guide-button" id="guideBtn">📖 사용 가이드</button>
   </div>
 
   <div class="content">
     <div class="form-section">
       <div class="section-title">📋 기본 정보</div>
-
-      <div class="ai-section">
-        <label>🤖 AI 자동 입력</label>
-        <textarea id="aiInput" placeholder="채용공고 텍스트를 여기에 붙여넣으세요."></textarea>
-        <button class="btn-primary" id="aiAnalyzeBtn" style="width: 100%;">🤖 텍스트 자동 분석</button>
-        <div class="ai-status" id="aiStatus"></div>
-      </div>
 
       <form id="recruitmentForm">
         <div class="form-columns">
@@ -424,7 +476,7 @@
           </div>
         </div>
 
-        <hr style="margin: 2rem 0; border: none; border-top: 1px solid #eee;">
+        <hr>
 
         <div class="form-group">
           <label>직급/직위</label>
@@ -444,32 +496,42 @@
 
         <div class="form-group">
           <label>주요 업무</label>
-          <textarea id="responsibilities"></textarea>
+          <textarea id="responsibilities" placeholder="예시:">- 
+- 
+- </textarea>
         </div>
 
         <div class="form-group">
           <label>지원 자격</label>
-          <textarea id="qualifications"></textarea>
+          <textarea id="qualifications" placeholder="예시:">- 
+- 
+- </textarea>
         </div>
 
         <div class="form-group">
           <label>우대 사항</label>
-          <textarea id="preferences"></textarea>
+          <textarea id="preferences" placeholder="예시:">- 
+- 
+- </textarea>
         </div>
 
         <div class="form-group">
           <label>제출 서류</label>
-          <textarea id="documents"></textarea>
+          <textarea id="documents" placeholder="예시:">- 
+- 
+- </textarea>
         </div>
 
         <div class="form-group">
           <label>전형 일정</label>
-          <textarea id="schedule"></textarea>
+          <textarea id="schedule" placeholder="예시:">1. 
+2. 
+3. </textarea>
         </div>
 
         <div class="form-group">
           <label>추가 정보 / FAQ</label>
-          <textarea id="additionalInfo"></textarea>
+          <textarea id="additionalInfo" placeholder="추가로 안내할 사항이 있다면 입력하세요"></textarea>
         </div>
 
         <div class="form-group">
@@ -482,7 +544,7 @@
           <button type="button" class="btn-secondary" id="copyHtmlBtn">📋 HTML 복사</button>
           <button type="button" class="btn-secondary" id="printBtn">🖨️ 인쇄</button>
           <button type="button" class="btn-secondary" id="downloadBtn">💾 다운로드</button>
-          <button type="button" class="btn-secondary" id="resetBtn">초기화</button>
+          <button type="button" class="btn-secondary" id="resetBtn">🔄 초기화</button>
         </div>
       </form>
     </div>
@@ -494,6 +556,11 @@
   </div>
 </div>
 
+<!-- 페이지 하단 제작 정보 -->
+<footer style="text-align: center; padding: 2rem 1rem; color: #718096; font-size: 13px; font-weight: 400; margin-top: 2rem;">
+  <p>제작: 울산대학교 총무처 총무인사팀 (2026.03.23)</p>
+</footer>
+
 <!-- 사용 가이드 모달 -->
 <div id="guideModal" class="modal">
   <div class="modal-content">
@@ -503,28 +570,6 @@
       
       <h3>🚀 빠른 시작</h3>
       <p>필수 항목(*)만 입력하고 <strong>"미리보기 생성"</strong> 버튼을 클릭하면 채용공고가 자동으로 생성됩니다.</p>
-      
-      <h3>🤖 AI 자동 입력 (선택사항)</h3>
-      <p>기존 채용공고 텍스트를 복사해서 붙여넣으면 AI가 자동으로 각 항목에 입력합니다.</p>
-      <ol>
-        <li>기존 채용공고 텍스트 복사</li>
-        <li>"AI 자동 입력" 박스에 붙여넣기</li>
-        <li>"🤖 텍스트 자동 분석" 버튼 클릭</li>
-        <li>자동으로 입력된 내용 확인 및 수정</li>
-      </ol>
-      
-      <div class="tip-box">
-        <strong>💡 AI 기능 사용 방법</strong>
-        AI 기능은 웹서버 환경에서만 작동합니다. 로컬 파일로 열면 "Failed to fetch" 에러가 발생합니다.
-        <br><br>
-        <strong>해결 방법:</strong><br>
-        1. 명령 프롬프트(CMD) 실행<br>
-        2. <code>cd 바탕화면</code> 입력<br>
-        3. <code>python -m http.server 8000</code> 입력<br>
-        4. 브라우저에서 <code>http://localhost:8000</code> 접속<br>
-        <br>
-        <em>※ Python이 없으면 수동 입력을 사용하세요 (AI 없이도 모든 기능 정상 작동)</em>
-      </div>
       
       <h3>📝 필수 입력 항목</h3>
       <ul>
@@ -536,27 +581,47 @@
         <li><strong>지원 마감일</strong>: 날짜 선택</li>
       </ul>
       
+      <h3>💡 마크다운 리스트 사용법</h3>
+      <p>주요 업무, 지원 자격, 우대 사항 등을 입력할 때 다음과 같이 작성하면 자동으로 예쁜 리스트로 변환됩니다:</p>
+      
+      <div class="tip-box">
+        <strong>✨ 불릿 리스트 (-, *, •)</strong>
+        <p style="margin:0;">
+        - 인권 상담 및 사건 처리<br>
+        - 인권 교육 기획 및 실행<br>
+        - 센터 운영 지원
+        </p>
+      </div>
+      
+      <div class="tip-box">
+        <strong>✨ 번호 리스트 (1., 2., 3.)</strong>
+        <p style="margin:0;">
+        1. 서류 전형<br>
+        2. 면접 전형<br>
+        3. 최종 합격 발표
+        </p>
+      </div>
+      
       <h3>✅ 미리보기 및 저장</h3>
       <ol>
         <li><strong>✓ 미리보기 생성</strong>: 오른쪽에서 실시간 미리보기</li>
-        <li><strong>📋 HTML 복사</strong>: HTML 코드를 클립보드에 복사 (에디터에 붙여넣기 가능)</li>
+        <li><strong>📋 HTML 복사</strong>: HTML 코드를 클립보드에 복사</li>
         <li><strong>🖨️ 인쇄</strong>: 바로 인쇄</li>
         <li><strong>💾 다운로드</strong>: HTML 파일로 저장</li>
       </ol>
       
       <div class="tip-box">
         <strong>⚠️ 주의사항</strong>
-        다운로드 전에 반드시 미리보기를 확인하세요!
+        복사 또는 다운로드 전에 반드시 미리보기를 확인하세요!
       </div>
       
       <h3>🆘 문제 해결</h3>
-      <p><strong>AI 기능 오류 시:</strong> 수동으로 입력해주세요.</p>
       <p><strong>미리보기가 안 보일 때:</strong> 필수 항목(*)이 모두 입력되었는지 확인하세요.</p>
       <p><strong>날짜 경고가 뜰 때:</strong> 마감일이 시작일보다 빠른지 확인하세요.</p>
       
-      <hr style="margin: 2rem 0; border: none; border-top: 1px solid #eee;">
+      <hr>
       
-      <p style="text-align: center; color: #999; font-size: 12px;">
+      <p style="text-align: center; color: #a0aec0; font-size: 13px; margin-top: 2rem;">
         문의: 울산대학교 총무처 총무인사팀
       </p>
     </div>
@@ -564,14 +629,10 @@
 </div>
 
 <script>
-// API 키
-const ANTHROPIC_API_KEY = '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';
-
 // 페이지 로드 시 초기화
 document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('guideBtn').addEventListener('click', openGuide);
   document.getElementById('closeGuideBtn').addEventListener('click', closeGuide);
-  document.getElementById('aiAnalyzeBtn').addEventListener('click', analyzeTextWithAI);
   document.getElementById('generateBtn').addEventListener('click', generatePreview);
   document.getElementById('copyHtmlBtn').addEventListener('click', copyHTMLCode);
   document.getElementById('printBtn').addEventListener('click', printPreview);
@@ -585,141 +646,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 });
-
-// AI 자동 분석
-async function analyzeTextWithAI() {
-  const aiInput = document.getElementById('aiInput').value;
-  const statusDiv = document.getElementById('aiStatus');
-  
-  if (!aiInput.trim()) {
-    alert('텍스트를 입력해주세요.');
-    return;
-  }
-
-  statusDiv.textContent = '🔄 AI 분석 중...';
-  
-  try {
-    // 프록시 서버 사용 여부 확인
-    const useProxy = window.location.protocol === 'http:' || window.location.protocol === 'https:';
-    
-    let response;
-    
-    if (useProxy) {
-      // 프록시 서버 통해 호출
-      response = await fetch('/api/analyze', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          text: aiInput
-        })
-      });
-    } else {
-      // 직접 호출 (file:// 프로토콜에서는 실패함)
-      response = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': ANTHROPIC_API_KEY,
-          'anthropic-version': '2023-06-01'
-        },
-        body: JSON.stringify({
-          model: 'claude-sonnet-4-20250514',
-          max_tokens: 1024,
-          messages: [{
-            role: 'user',
-            content: `다음 채용공고 텍스트를 분석하여 JSON으로 추출하라.
-
-텍스트:
-${aiInput}
-
-JSON 형식:
-{"positionTitle":"","department":"","employmentType":"","headcount":"","startDate":"YYYY-MM-DD","deadline":"YYYY-MM-DD","position":"","salary":"","workHours":"","responsibilities":"","qualifications":"","preferences":"","documents":"","schedule":"","contact":""}
-
-규칙:
-1. employmentType은 "정규직", "기간제", "무기계약직", "계약직" 중 하나
-2. 날짜는 YYYY-MM-DD 형식
-3. responsibilities, qualifications, preferences, documents, schedule 필드는 마크다운 리스트 형식으로 작성:
-   - 여러 항목이 있으면 "- 항목1\\n- 항목2\\n- 항목3" 형식 사용
-   - 번호가 있으면 "1. 항목1\\n2. 항목2\\n3. 항목3" 형식 사용
-   예: "responsibilities": "- 인권 상담 및 사건 처리\\n- 인권 교육 기획\\n- 센터 운영 지원"
-4. JSON만 출력, 다른 설명 없이`
-          }]
-        })
-      });
-    }
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.error?.message || 'API 요청 실패');
-    }
-
-    const data = await response.json();
-    
-    // 응답 내용 추출
-    let content;
-    if (data.content && Array.isArray(data.content) && data.content.length > 0) {
-      content = data.content[0].text;
-    } else if (data.text) {
-      content = data.text;
-    } else {
-      throw new Error('응답 형식 오류');
-    }
-    
-    // JSON 추출 - 마크다운 코드 블록 제거
-    content = content.replace(/```json\n?/g, '').replace(/```\n?/g, '');
-    
-    // JSON 객체 찾기
-    const jsonMatch = content.match(/\{[\s\S]*\}/);
-    
-    if (!jsonMatch) {
-      // JSON이 없으면 에러 메시지 표시
-      console.log('AI 응답:', content);
-      throw new Error('JSON 형식을 찾을 수 없습니다. AI가 일반 텍스트로 응답했습니다.');
-    }
-
-    const result = JSON.parse(jsonMatch[0]);
-
-    const fields = ['positionTitle', 'department', 'employmentType', 'headcount', 'startDate', 'deadline', 
-                    'position', 'salary', 'workHours', 'responsibilities', 'qualifications', 'preferences', 
-                    'documents', 'schedule', 'contact'];
-    
-    fields.forEach(field => {
-      if (result[field]) {
-        const el = document.getElementById(field);
-        if (el) el.value = result[field];
-      }
-    });
-
-    statusDiv.textContent = '✅ 완료!';
-    document.getElementById('aiInput').value = '';
-    setTimeout(() => generatePreview(), 500);
-
-  } catch (error) {
-    console.error('AI Error:', error);
-    console.error('Full error details:', error);
-    
-    // CORS 에러인 경우
-    if (error.message === 'Failed to fetch' || error.name === 'TypeError') {
-      statusDiv.innerHTML = '❌ <strong>AI 기능 사용 불가</strong><br>' +
-        '<small style="color: #666;">로컬 파일에서는 보안상 API 호출이 차단됩니다.<br>' +
-        '<strong>해결 방법:</strong><br>' +
-        '1. 프록시 서버로 실행: <code style="background:#f0f0f0;padding:2px 6px;border-radius:3px;">python server.py</code><br>' +
-        '&nbsp;&nbsp;&nbsp;→ 브라우저에서 <code style="background:#f0f0f0;padding:2px 6px;border-radius:3px;">http://localhost:8000</code> 접속<br>' +
-        '2. 또는 수동으로 입력하세요 (AI 없이도 모든 기능 정상 작동)</small>';
-    } else if (error.message.includes('JSON')) {
-      statusDiv.innerHTML = '❌ <strong>AI 응답 형식 오류</strong><br>' +
-        '<small style="color: #666;">AI가 예상과 다른 형식으로 응답했습니다.<br>' +
-        '다시 시도하거나 수동으로 입력해주세요.<br>' +
-        '<em>오류 내용: ' + error.message + '</em></small>';
-    } else {
-      statusDiv.innerHTML = '❌ <strong>오류 발생</strong><br>' +
-        '<small style="color: #666;">' + error.message + '<br>' +
-        '수동으로 입력하거나 다시 시도해주세요.</small>';
-    }
-  }
-}
 
 // 입력값 검증
 function validateInputs(formData) {
@@ -748,57 +674,52 @@ function convertMarkdownToHTML(text) {
   if (!text) return '';
   
   let html = text;
-  
-  // 줄바꿈 기준으로 분리
   const lines = html.split('\n');
   let result = '';
   let inList = false;
+  let listType = null;
   
   for (let line of lines) {
     line = line.trim();
     
     // 불릿 리스트 (-, *, •)
     if (line.match(/^[-*•]\s+/)) {
-      if (!inList) {
-        result += '<ul style="margin: 0.5rem 0; padding-left: 1.5rem; line-height: 2; text-align: left;">';
+      if (!inList || listType !== 'ul') {
+        if (inList && listType === 'ol') result += '</ol>';
+        result += '<ul style="margin: 0.5rem 0; padding-left: 2rem; line-height: 2;">';
         inList = true;
+        listType = 'ul';
       }
       const content = line.replace(/^[-*•]\s+/, '');
-      result += `<li style="margin-bottom: 0.5rem; text-align: left;">${content}</li>`;
+      result += `<li style="margin-bottom: 0.5rem;">${content}</li>`;
     }
     // 번호 리스트 (1., 2., 3.)
     else if (line.match(/^\d+\.\s+/)) {
-      if (!inList) {
-        result += '<ol style="margin: 0.5rem 0; padding-left: 1.5rem; line-height: 2; text-align: left;">';
+      if (!inList || listType !== 'ol') {
+        if (inList && listType === 'ul') result += '</ul>';
+        result += '<ol style="margin: 0.5rem 0; padding-left: 2rem; line-height: 2;">';
         inList = true;
+        listType = 'ol';
       }
       const content = line.replace(/^\d+\.\s+/, '');
-      result += `<li style="margin-bottom: 0.5rem; text-align: left;">${content}</li>`;
+      result += `<li style="margin-bottom: 0.5rem;">${content}</li>`;
     }
     // 일반 텍스트
     else {
       if (inList) {
-        // 이전이 ul이었는지 ol이었는지 확인
-        if (result.includes('<ul')) {
-          result += '</ul>';
-        } else if (result.includes('<ol')) {
-          result += '</ol>';
-        }
+        result += listType === 'ul' ? '</ul>' : '</ol>';
         inList = false;
+        listType = null;
       }
       if (line) {
-        result += `<p style="margin-bottom: 0.5rem; text-align: left;">${line}</p>`;
+        result += `<p style="margin-bottom: 0.5rem;">${line}</p>`;
       }
     }
   }
   
   // 마지막 리스트 닫기
   if (inList) {
-    if (result.includes('<ul')) {
-      result += '</ul>';
-    } else if (result.includes('<ol')) {
-      result += '</ol>';
-    }
+    result += listType === 'ul' ? '</ul>' : '</ol>';
   }
   
   return result || text;
@@ -844,109 +765,111 @@ function generatePreview() {
     alert(errors.join('\n'));
   }
 
+  // 날짜 포맷팅
   const startDateFormatted = new Date(formData.startDate).toLocaleDateString('ko-KR', {year: 'numeric', month: 'long', day: 'numeric'});
   const deadlineFormatted = new Date(formData.deadline).toLocaleDateString('ko-KR', {year: 'numeric', month: 'long', day: 'numeric'});
   const today = new Date().toLocaleDateString('ko-KR', {year: 'numeric', month: 'long', day: 'numeric'});
 
+  // HTML 생성
   let preview = `
-<div style="max-width: 800px; margin: 0 auto; font-family: 'Noto Sans KR', 'Malgun Gothic', sans-serif; line-height: 1.8; color: #333;">
-  <div style="border-bottom: 3px double #2B7A3D; padding-bottom: 1.5rem; margin-bottom: 2rem;">
-    <h1 style="font-size: 24px; color: #2B7A3D; margin-bottom: 0.5rem;">울산대학교 ${formData.positionTitle} 채용공고</h1>
-    <p style="font-size: 13px; color: #666;">공고일자: ${today}</p>
+<div style="max-width: 800px; margin: 0 auto; font-family: 'Nanum Gothic', 'Malgun Gothic', sans-serif; line-height: 1.8; color: #2d3748;">
+  <div style="border-bottom: 3px double #2d3748; padding-bottom: 1.5rem; margin-bottom: 2rem;">
+    <h1 style="font-size: 26px; color: #2d3748; margin-bottom: 0.5rem; font-weight: 800; letter-spacing: -0.5px;">울산대학교 ${formData.positionTitle} 채용공고</h1>
+    <p style="font-size: 13px; color: #718096; font-weight: 400;">공고일자: ${today}</p>
   </div>
 
   <table style="width: 100%; border-collapse: collapse; margin-bottom: 2rem; font-size: 14px;">
-    <tr style="background: #F0F7ED;">
-      <td style="padding: 12px; border: 1px solid #D4E8D1; font-weight: bold; width: 25%;">모집 분야</td>
-      <td style="padding: 12px; border: 1px solid #D4E8D1;">${formData.positionTitle}</td>
+    <tr style="background: #f7fafc;">
+      <td style="padding: 14px; border: 1px solid #e2e8f0; font-weight: 700; width: 25%; color: #4a5568;">모집 분야</td>
+      <td style="padding: 14px; border: 1px solid #e2e8f0; font-weight: 400;">${formData.positionTitle}</td>
     </tr>
     <tr>
-      <td style="padding: 12px; border: 1px solid #D4E8D1; font-weight: bold;">근무 부서</td>
-      <td style="padding: 12px; border: 1px solid #D4E8D1;">${formData.department}</td>
+      <td style="padding: 14px; border: 1px solid #e2e8f0; font-weight: 700; color: #4a5568;">근무 부서</td>
+      <td style="padding: 14px; border: 1px solid #e2e8f0; font-weight: 400;">${formData.department}</td>
     </tr>
-    <tr style="background: #F0F7ED;">
-      <td style="padding: 12px; border: 1px solid #D4E8D1; font-weight: bold;">고용 형태</td>
-      <td style="padding: 12px; border: 1px solid #D4E8D1;">${formData.employmentType}</td>
+    <tr style="background: #f7fafc;">
+      <td style="padding: 14px; border: 1px solid #e2e8f0; font-weight: 700; color: #4a5568;">고용 형태</td>
+      <td style="padding: 14px; border: 1px solid #e2e8f0; font-weight: 400;">${formData.employmentType}</td>
     </tr>
     <tr>
-      <td style="padding: 12px; border: 1px solid #D4E8D1; font-weight: bold;">모집 인원</td>
-      <td style="padding: 12px; border: 1px solid #D4E8D1;">${formData.headcount}</td>
+      <td style="padding: 14px; border: 1px solid #e2e8f0; font-weight: 700; color: #4a5568;">모집 인원</td>
+      <td style="padding: 14px; border: 1px solid #e2e8f0; font-weight: 400;">${formData.headcount}</td>
     </tr>
-    ${formData.position ? `<tr style="background: #F0F7ED;">
-      <td style="padding: 12px; border: 1px solid #D4E8D1; font-weight: bold;">직급/직위</td>
-      <td style="padding: 12px; border: 1px solid #D4E8D1;">${formData.position}</td>
+    ${formData.position ? `<tr style="background: #f7fafc;">
+      <td style="padding: 14px; border: 1px solid #e2e8f0; font-weight: 700; color: #4a5568;">직급/직위</td>
+      <td style="padding: 14px; border: 1px solid #e2e8f0; font-weight: 400;">${formData.position}</td>
     </tr>` : ''}
     ${formData.salary ? `<tr>
-      <td style="padding: 12px; border: 1px solid #D4E8D1; font-weight: bold;">급여</td>
-      <td style="padding: 12px; border: 1px solid #D4E8D1;">${formData.salary}</td>
+      <td style="padding: 14px; border: 1px solid #e2e8f0; font-weight: 700; color: #4a5568;">급여</td>
+      <td style="padding: 14px; border: 1px solid #e2e8f0; font-weight: 400;">${formData.salary}</td>
     </tr>` : ''}
-    ${formData.workHours ? `<tr style="background: #F0F7ED;">
-      <td style="padding: 12px; border: 1px solid #D4E8D1; font-weight: bold;">근무 시간</td>
-      <td style="padding: 12px; border: 1px solid #D4E8D1;">${formData.workHours}</td>
+    ${formData.workHours ? `<tr style="background: #f7fafc;">
+      <td style="padding: 14px; border: 1px solid #e2e8f0; font-weight: 700; color: #4a5568;">근무 시간</td>
+      <td style="padding: 14px; border: 1px solid #e2e8f0; font-weight: 400;">${formData.workHours}</td>
     </tr>` : ''}
     <tr>
-      <td style="padding: 12px; border: 1px solid #D4E8D1; font-weight: bold;">근무 시작일</td>
-      <td style="padding: 12px; border: 1px solid #D4E8D1;">${startDateFormatted}</td>
+      <td style="padding: 14px; border: 1px solid #e2e8f0; font-weight: 700; color: #4a5568;">근무 시작일</td>
+      <td style="padding: 14px; border: 1px solid #e2e8f0; font-weight: 400;">${startDateFormatted}</td>
     </tr>
-    <tr style="background: #F0F7ED;">
-      <td style="padding: 12px; border: 1px solid #D4E8D1; font-weight: bold; color: #D4870E;">지원 마감</td>
-      <td style="padding: 12px; border: 1px solid #D4E8D1; font-weight: bold; color: #D4870E;">${deadlineFormatted} 18:00까지</td>
+    <tr style="background: #fff5f5;">
+      <td style="padding: 14px; border: 1px solid #e2e8f0; font-weight: 700; color: #e53e3e;">지원 마감</td>
+      <td style="padding: 14px; border: 1px solid #e2e8f0; font-weight: 700; color: #e53e3e;">${deadlineFormatted} 18:00까지</td>
     </tr>
   </table>
 
   ${formData.responsibilities ? `
   <div style="margin-bottom: 2rem;">
-    <h3 style="font-size: 16px; color: #2B7A3D; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #D4E8D1;">주요 업무</h3>
-    <div style="font-size: 14px; padding-left: 1rem;">${convertMarkdownToHTML(formData.responsibilities)}</div>
+    <h3 style="font-size: 17px; color: #2d3748; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #e2e8f0; font-weight: 800;">주요 업무</h3>
+    <div style="font-size: 14px; padding-left: 1rem; font-weight: 400;">${convertMarkdownToHTML(formData.responsibilities)}</div>
   </div>
   ` : ''}
 
   ${formData.qualifications ? `
   <div style="margin-bottom: 2rem;">
-    <h3 style="font-size: 16px; color: #2B7A3D; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #D4E8D1;">지원 자격</h3>
-    <div style="font-size: 14px; padding-left: 1rem;">${convertMarkdownToHTML(formData.qualifications)}</div>
+    <h3 style="font-size: 17px; color: #2d3748; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #e2e8f0; font-weight: 800;">지원 자격</h3>
+    <div style="font-size: 14px; padding-left: 1rem; font-weight: 400;">${convertMarkdownToHTML(formData.qualifications)}</div>
   </div>
   ` : ''}
 
   ${formData.preferences ? `
   <div style="margin-bottom: 2rem;">
-    <h3 style="font-size: 16px; color: #2B7A3D; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #D4E8D1;">우대 사항</h3>
-    <div style="font-size: 14px; padding-left: 1rem;">${convertMarkdownToHTML(formData.preferences)}</div>
+    <h3 style="font-size: 17px; color: #2d3748; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #e2e8f0; font-weight: 800;">우대 사항</h3>
+    <div style="font-size: 14px; padding-left: 1rem; font-weight: 400;">${convertMarkdownToHTML(formData.preferences)}</div>
   </div>
   ` : ''}
 
   ${formData.documents ? `
   <div style="margin-bottom: 2rem;">
-    <h3 style="font-size: 16px; color: #2B7A3D; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #D4E8D1;">제출 서류</h3>
-    <div style="font-size: 14px; padding-left: 1rem;">${convertMarkdownToHTML(formData.documents)}</div>
+    <h3 style="font-size: 17px; color: #2d3748; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #e2e8f0; font-weight: 800;">제출 서류</h3>
+    <div style="font-size: 14px; padding-left: 1rem; font-weight: 400;">${convertMarkdownToHTML(formData.documents)}</div>
   </div>
   ` : ''}
 
   ${formData.schedule ? `
   <div style="margin-bottom: 2rem;">
-    <h3 style="font-size: 16px; color: #2B7A3D; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #D4E8D1;">전형 일정</h3>
-    <div style="font-size: 14px; padding-left: 1rem;">${convertMarkdownToHTML(formData.schedule)}</div>
-    <p style="font-size: 13px; color: #666; margin-top: 1rem; padding-left: 1rem;">※ 각 전형 결과는 합격·불합격자 모두에게 개별 통보합니다.</p>
+    <h3 style="font-size: 17px; color: #2d3748; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #e2e8f0; font-weight: 800;">전형 일정</h3>
+    <div style="font-size: 14px; padding-left: 1rem; font-weight: 400;">${convertMarkdownToHTML(formData.schedule)}</div>
+    <p style="font-size: 13px; color: #718096; margin-top: 1rem; padding-left: 1rem; font-weight: 400;">※ 각 전형 결과는 합격·불합격자 모두에게 개별 통보합니다.</p>
   </div>
   ` : ''}
 
   <div style="margin-bottom: 2rem;">
-    <h3 style="font-size: 16px; color: #2B7A3D; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #D4E8D1;">유의 사항</h3>
-    <ul style="font-size: 14px; padding-left: 1.5rem; line-height: 2; text-align: left;">
-      <li style="text-align: left;">허위 기재 시 합격이 취소됩니다.</li>
+    <h3 style="font-size: 17px; color: #2d3748; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #e2e8f0; font-weight: 800;">유의 사항</h3>
+    <ul style="font-size: 14px; padding-left: 2rem; line-height: 2; font-weight: 400;">
+      <li>허위 기재 시 합격이 취소됩니다.</li>
     </ul>
   </div>
 
   ${formData.additionalInfo ? `
   <div style="margin-bottom: 2rem;">
-    <h3 style="font-size: 16px; color: #2B7A3D; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #D4E8D1;">추가 정보</h3>
-    <div style="font-size: 14px; padding-left: 1rem;">${convertMarkdownToHTML(formData.additionalInfo)}</div>
+    <h3 style="font-size: 17px; color: #2d3748; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #e2e8f0; font-weight: 800;">추가 정보</h3>
+    <div style="font-size: 14px; padding-left: 1rem; font-weight: 400;">${convertMarkdownToHTML(formData.additionalInfo)}</div>
   </div>
   ` : ''}
 
   ${formData.contact ? `
-  <div style="padding: 1.5rem; background: #F9F9F9; border-radius: 8px;">
-    <p style="font-size: 14px; color: #666;">문의: ${formData.contact}</p>
+  <div style="padding: 1.5rem; background: #f7fafc; border-radius: 8px;">
+    <p style="font-size: 14px; color: #4a5568; font-weight: 400;">문의: ${formData.contact}</p>
   </div>
   ` : ''}
 </div>
@@ -970,6 +893,7 @@ function downloadHTML() {
 <head>
   <meta charset="UTF-8">
   <title>울산대학교 ${positionTitle} 채용공고</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 ${previewContainer.innerHTML}
@@ -999,6 +923,7 @@ function copyHTMLCode() {
 <head>
   <meta charset="UTF-8">
   <title>울산대학교 ${positionTitle} 채용공고</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 ${previewContainer.innerHTML}
@@ -1008,7 +933,6 @@ ${previewContainer.innerHTML}
   navigator.clipboard.writeText(fullHTML).then(() => {
     alert('✅ HTML 코드가 클립보드에 복사되었습니다!\n\n에디터나 메모장에 붙여넣기(Ctrl+V) 하세요.');
   }).catch(err => {
-    // 복사 실패 시 텍스트 영역 방식 사용
     const textarea = document.createElement('textarea');
     textarea.value = fullHTML;
     textarea.style.position = 'fixed';
@@ -1042,14 +966,15 @@ function printPreview() {
     <head>
       <meta charset="UTF-8">
       <title>채용공고 인쇄</title>
+      <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
       <style>
-        @media print { @page { margin: 2cm; } body { font-family: 'Malgun Gothic', sans-serif; } }
-        body { font-family: 'Malgun Gothic', sans-serif; padding: 20px; }
+        @media print { @page { margin: 2cm; } body { font-family: 'Nanum Gothic', sans-serif; } }
+        body { font-family: 'Nanum Gothic', sans-serif; padding: 20px; }
       </style>
     </head>
     <body>
       ${previewContainer.innerHTML}
-      <script type="text/javascript">
+      <script>
         window.onload = function() {
           window.print();
           window.onafterprint = function() { window.close(); }
@@ -1065,8 +990,6 @@ function printPreview() {
 function resetForm() {
   if (confirm('모든 입력 내용을 초기화하시겠습니까?')) {
     document.getElementById('recruitmentForm').reset();
-    document.getElementById('aiInput').value = '';
-    document.getElementById('aiStatus').textContent = '';
     document.getElementById('previewContainer').innerHTML = '<div class="preview-empty">정보를 입력하고 "미리보기 생성" 버튼을 클릭하세요.</div>';
   }
 }
