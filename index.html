@@ -160,6 +160,19 @@
       font-size: 11px;
       color: #999;
       margin-top: 0.35rem;
+      line-height: 1.6;
+    }
+    
+    .ai-status code {
+      background: #f0f0f0;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: 'Consolas', 'Monaco', monospace;
+      font-size: 10px;
+    }
+    
+    .ai-status strong {
+      color: #2B7A3D;
     }
 
     .button-group {
@@ -328,6 +341,15 @@
       display: block;
       margin-bottom: 0.5rem;
     }
+    
+    .guide-content code {
+      background: #f0f0f0;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: 'Consolas', 'Monaco', monospace;
+      font-size: 12px;
+      color: #d63384;
+    }
 
     @media (max-width: 1024px) {
       .content {
@@ -379,6 +401,9 @@
             <label>고용 형태 <span class="required">*</span></label>
             <select id="employmentType" required>
               <option value="">선택하세요</option>
+              <option>정규직</option>
+              <option>기간제</option>
+              <option>무기계약직</option>
               <option>계약직</option>
             </select>
           </div>
@@ -489,15 +514,23 @@
       </ol>
       
       <div class="tip-box">
-        <strong>💡 팁</strong>
-        AI 기능은 인터넷이 연결된 환경에서만 작동합니다. 오류가 발생하면 수동으로 입력해주세요.
+        <strong>💡 AI 기능 사용 방법</strong>
+        AI 기능은 웹서버 환경에서만 작동합니다. 로컬 파일로 열면 "Failed to fetch" 에러가 발생합니다.
+        <br><br>
+        <strong>해결 방법:</strong><br>
+        1. 명령 프롬프트(CMD) 실행<br>
+        2. <code>cd 바탕화면</code> 입력<br>
+        3. <code>python -m http.server 8000</code> 입력<br>
+        4. 브라우저에서 <code>http://localhost:8000</code> 접속<br>
+        <br>
+        <em>※ Python이 없으면 수동 입력을 사용하세요 (AI 없이도 모든 기능 정상 작동)</em>
       </div>
       
       <h3>📝 필수 입력 항목</h3>
       <ul>
         <li><strong>공고명</strong>: 예) 인권센터 계약직</li>
         <li><strong>모집 부서</strong>: 예) 인권센터</li>
-        <li><strong>고용 형태</strong>: 계약직 중 선택</li>
+        <li><strong>고용 형태</strong>: 정규직, 기간제, 무기계약직, 계약직 중 선택</li>
         <li><strong>모집 인원</strong>: 예) 1명</li>
         <li><strong>근무 시작 예정일</strong>: 날짜 선택</li>
         <li><strong>지원 마감일</strong>: 날짜 선택</li>
@@ -595,7 +628,8 @@ JSON 형식:
     });
 
     if (!response.ok) {
-      throw new Error('API 요청 실패');
+      const errorData = await response.json();
+      throw new Error(errorData.error?.message || 'API 요청 실패');
     }
 
     const data = await response.json();
@@ -624,8 +658,19 @@ JSON 형식:
     setTimeout(() => generatePreview(), 500);
 
   } catch (error) {
-    statusDiv.textContent = '❌ 오류: ' + error.message;
-    console.error('Error:', error);
+    console.error('AI Error:', error);
+    
+    // CORS 에러인 경우
+    if (error.message === 'Failed to fetch' || error.name === 'TypeError') {
+      statusDiv.innerHTML = '❌ <strong>AI 기능 사용 불가</strong><br>' +
+        '<small style="color: #666;">로컬 파일에서는 보안상 API 호출이 차단됩니다.<br>' +
+        '<strong>해결 방법:</strong><br>' +
+        '1. 웹서버로 실행: <code style="background:#f0f0f0;padding:2px 6px;border-radius:3px;">python -m http.server 8000</code><br>' +
+        '&nbsp;&nbsp;&nbsp;→ 브라우저에서 <code style="background:#f0f0f0;padding:2px 6px;border-radius:3px;">http://localhost:8000</code> 접속<br>' +
+        '2. 또는 수동으로 입력하세요 (AI 없이도 모든 기능 정상 작동)</small>';
+    } else {
+      statusDiv.textContent = '❌ 오류: ' + error.message;
+    }
   }
 }
 
