@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="울산대학교 채용공고 생성기 - 전문적이고 일관된 채용공고를 쉽게 만들어보세요">
-  <meta name="theme-color" content="#2B7A3D">
   <title>울산대학교 채용공고 생성기</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -14,110 +15,11 @@
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+      font-family: 'Noto Sans KR', 'Malgun Gothic', '맑은 고딕', 'Apple SD Gothic Neo', sans-serif;
       background: linear-gradient(135deg, #f5f7fa 0%, #e8f0e5 100%);
       min-height: 100vh;
       padding: 2rem 1rem;
       color: #333;
-    }
-
-    .settings-btn {
-      position: fixed;
-      top: 2rem;
-      right: 2rem;
-      z-index: 999;
-      padding: 0.5rem 1rem;
-      background: #f0f7ed;
-      color: #2B7A3D;
-      border: 1px solid #d4e8d1;
-      border-radius: 6px;
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    .settings-btn:hover {
-      background: #e8f2e4;
-    }
-
-    #settingsModal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-    }
-
-    .settings-content {
-      background: white;
-      padding: 2rem;
-      border-radius: 12px;
-      max-width: 500px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    }
-
-    .settings-content h2 {
-      color: #2B7A3D;
-      margin-bottom: 1rem;
-      font-size: 18px;
-      font-weight: 700;
-    }
-
-    .settings-content p {
-      font-size: 13px;
-      color: #666;
-      margin-bottom: 1rem;
-      line-height: 1.6;
-    }
-
-    .settings-content label {
-      display: block;
-      font-size: 13px;
-      font-weight: 600;
-      color: #2B7A3D;
-      margin-bottom: 0.5rem;
-    }
-
-    .settings-content input {
-      width: 100%;
-      padding: 0.75rem;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      margin-bottom: 1rem;
-      font-family: monospace;
-      font-size: 12px;
-    }
-
-    .settings-buttons {
-      display: flex;
-      gap: 0.75rem;
-    }
-
-    .settings-buttons button {
-      flex: 1;
-      padding: 0.75rem;
-      border: none;
-      border-radius: 6px;
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    .btn-save {
-      background: #2B7A3D;
-      color: white;
-    }
-
-    .btn-cancel {
-      background: #f0f7ed;
-      color: #2B7A3D;
-      border: 1px solid #d4e8d1;
     }
 
     .main-container {
@@ -128,6 +30,7 @@
     .header {
       text-align: center;
       margin-bottom: 3rem;
+      position: relative;
     }
 
     .header h1 {
@@ -201,7 +104,6 @@
       border-radius: 6px;
       font-size: 13px;
       font-family: inherit;
-      transition: all 0.3s ease;
     }
 
     .form-group input:focus,
@@ -215,13 +117,6 @@
     .form-group textarea {
       resize: vertical;
       min-height: 100px;
-      line-height: 1.5;
-    }
-
-    .help-text {
-      font-size: 11px;
-      color: #999;
-      margin-top: 0.35rem;
     }
 
     .form-columns {
@@ -232,27 +127,6 @@
 
     .form-columns .form-group {
       margin-bottom: 0;
-    }
-
-    .info-box {
-      background: #F0F7ED;
-      border-left: 4px solid #2B7A3D;
-      padding: 1rem;
-      margin-bottom: 1.5rem;
-      border-radius: 6px;
-    }
-
-    .info-box strong {
-      color: #2B7A3D;
-      display: block;
-      margin-bottom: 0.35rem;
-      font-size: 12px;
-    }
-
-    .info-box p {
-      font-size: 12px;
-      color: #666;
-      line-height: 1.5;
     }
 
     .ai-section {
@@ -293,11 +167,6 @@
       gap: 0.75rem;
       margin-top: 2rem;
       flex-wrap: wrap;
-      position: sticky;
-      bottom: 0;
-      background: white;
-      padding: 1rem 0;
-      border-top: 1px solid #eee;
     }
 
     button {
@@ -307,7 +176,7 @@
       font-size: 13px;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: all 0.2s;
     }
 
     .btn-primary {
@@ -319,7 +188,6 @@
 
     .btn-primary:hover {
       background: #1F5A2C;
-      box-shadow: 0 4px 12px rgba(43, 122, 61, 0.3);
     }
 
     .btn-secondary {
@@ -339,58 +207,158 @@
       font-size: 13px;
     }
 
+    .guide-button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: #2B7A3D;
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .guide-button:hover {
+      background: #1F5A2C;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(43, 122, 61, 0.3);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      animation: fadeIn 0.3s;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal-content {
+      background-color: white;
+      margin: 5% auto;
+      padding: 2rem;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 600px;
+      max-height: 80vh;
+      overflow-y: auto;
+      position: relative;
+      animation: slideIn 0.3s;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 28px;
+      font-weight: bold;
+      color: #999;
+      cursor: pointer;
+      border: none;
+      background: none;
+      padding: 0;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+    }
+
+    .close-modal:hover {
+      color: #333;
+    }
+
+    .guide-content h2 {
+      color: #2B7A3D;
+      font-size: 20px;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #D4E8D1;
+    }
+
+    .guide-content h3 {
+      color: #2B7A3D;
+      font-size: 16px;
+      margin-top: 1.5rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .guide-content p {
+      line-height: 1.8;
+      margin-bottom: 1rem;
+      color: #555;
+    }
+
+    .guide-content ul, .guide-content ol {
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .guide-content li {
+      margin-bottom: 0.5rem;
+      line-height: 1.6;
+      color: #555;
+    }
+
+    .guide-content .tip-box {
+      background: #F0F7ED;
+      border-left: 4px solid #2B7A3D;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 4px;
+    }
+
+    .guide-content .tip-box strong {
+      color: #2B7A3D;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
     @media (max-width: 1024px) {
       .content {
         grid-template-columns: 1fr;
+      }
+      
+      .guide-button {
+        position: static;
+        display: block;
+        margin: 1rem auto 0;
       }
     }
   </style>
 </head>
 <body>
 
-<!-- 설정 버튼 -->
-<button class="settings-btn" onclick="openSettings()">⚙️ 설정</button>
-
-<!-- 설정 모달 -->
-<div id="settingsModal">
-  <div class="settings-content">
-    <h2>⚙️ API 키 설정</h2>
-    <p>Anthropic API 키를 한 번 설정하면, 사용자들은 그냥 텍스트를 붙여넣고 버튼만 클릭하면 됩니다.</p>
-    
-    <label>API 키:</label>
-    <input type="password" id="apiKeyInput" placeholder="sk-ant-...">
-    
-    <p style="font-size: 11px; color: #999;">
-      🔐 API 키는 이 브라우저에만 저장되며, 서버로 전송되지 않습니다.<br>
-      발급받기: <a href="https://console.anthropic.com" target="_blank" style="color: #2B7A3D;">console.anthropic.com</a>
-    </p>
-    
-    <div class="settings-buttons">
-      <button class="btn-save" onclick="saveApiKey()">💾 저장</button>
-      <button class="btn-cancel" onclick="closeSettings()">취소</button>
-    </div>
-  </div>
-</div>
-
 <div class="main-container">
   <div class="header">
-    <h1>울산대학교 채용공고 생성기</h1>
-    <p>전문적이고 일관된 채용공고를 쉽게 만들어보세요</p>
+    <h1>울산대학교 채용공고 생성기 ver1.0 (2026.03.23.)</h1>
+    <p>제작: 울산대학교 총무처 총무인사팀</p>
+    <button class="guide-button" id="guideBtn">📖 사용 가이드</button>
   </div>
 
   <div class="content">
     <div class="form-section">
       <div class="section-title">📋 기본 정보</div>
 
-      <div class="info-box">
-        <strong>💡 팁</strong>
-        <p>필수 항목(*)만 입력해도 공고가 생성됩니다. 선택 항목은 있으면 추가하세요.</p>
-      </div>
-
       <div class="ai-section">
         <label>🤖 AI 자동 입력</label>
-        <textarea id="aiInput" placeholder="채용공고 텍스트를 여기에 붙여넣으세요.&#10;예) 인권센터 계약직 모집. 모집인원 1명, 급여 월 291만원~349만원..."></textarea>
-        <button class="btn-primary" onclick="analyzeTextWithAI()" style="width: 100%;">🤖 텍스트 자동 분석</button>
+        <textarea id="aiInput" placeholder="채용공고 텍스트를 여기에 붙여넣으세요."></textarea>
+        <button class="btn-primary" id="aiAnalyzeBtn" style="width: 100%;">🤖 텍스트 자동 분석</button>
         <div class="ai-status" id="aiStatus"></div>
       </div>
 
@@ -426,20 +394,19 @@
         <div class="form-columns">
           <div class="form-group">
             <label>근무 시작 예정일 <span class="required">*</span></label>
-            <input type="date" id="startDate" required onchange="document.getElementById('deadline').focus();">
+            <input type="date" id="startDate" required>
           </div>
           <div class="form-group">
             <label>지원 마감일 <span class="required">*</span></label>
-            <input type="date" id="deadline" required onchange="document.getElementById('position').focus();">
+            <input type="date" id="deadline" required>
           </div>
         </div>
 
         <hr style="margin: 2rem 0; border: none; border-top: 1px solid #eee;">
-        <div class="section-title">상세 정보 (선택)</div>
 
         <div class="form-group">
           <label>직급/직위</label>
-          <input type="text" id="position" placeholder="예) 선임금">
+          <input type="text" id="position" placeholder="예) 선임급">
         </div>
 
         <div class="form-columns">
@@ -455,32 +422,32 @@
 
         <div class="form-group">
           <label>주요 업무</label>
-          <textarea id="responsibilities" placeholder="- 업무 내용&#10;- 업무 내용"></textarea>
+          <textarea id="responsibilities"></textarea>
         </div>
 
         <div class="form-group">
           <label>지원 자격</label>
-          <textarea id="qualifications" placeholder="- 자격 요건&#10;- 자격 요건"></textarea>
+          <textarea id="qualifications"></textarea>
         </div>
 
         <div class="form-group">
           <label>우대 사항</label>
-          <textarea id="preferences" placeholder="- 우대 사항&#10;- 우대 사항"></textarea>
+          <textarea id="preferences"></textarea>
         </div>
 
         <div class="form-group">
           <label>제출 서류</label>
-          <textarea id="documents" placeholder="- 이력서 및 자기소개서&#10;- 졸업증명서"></textarea>
+          <textarea id="documents"></textarea>
         </div>
 
         <div class="form-group">
           <label>전형 일정</label>
-          <textarea id="schedule" placeholder="2026.3.16(월)&#10;지원서 접수&#10;&#10;2026.3.30(월) 18:00&#10;1차 발표"></textarea>
+          <textarea id="schedule"></textarea>
         </div>
 
         <div class="form-group">
           <label>추가 정보 / FAQ</label>
-          <textarea id="additionalInfo" placeholder="Q. 질문&#10;A. 답변"></textarea>
+          <textarea id="additionalInfo"></textarea>
         </div>
 
         <div class="form-group">
@@ -489,8 +456,11 @@
         </div>
 
         <div class="button-group">
-          <button type="button" class="btn-primary" onclick="generatePreview()">✓ 미리보기 생성</button>
-          <button type="button" class="btn-secondary" onclick="resetForm()">초기화</button>
+          <button type="button" class="btn-primary" id="generateBtn">✓ 미리보기 생성</button>
+          <button type="button" class="btn-secondary" id="copyHtmlBtn">📋 HTML 복사</button>
+          <button type="button" class="btn-secondary" id="printBtn">🖨️ 인쇄</button>
+          <button type="button" class="btn-secondary" id="downloadBtn">💾 다운로드</button>
+          <button type="button" class="btn-secondary" id="resetBtn">초기화</button>
         </div>
       </form>
     </div>
@@ -502,43 +472,97 @@
   </div>
 </div>
 
+<!-- 사용 가이드 모달 -->
+<div id="guideModal" class="modal">
+  <div class="modal-content">
+    <button class="close-modal" id="closeGuideBtn">&times;</button>
+    <div class="guide-content">
+      <h2>📖 채용공고 생성기 사용 가이드</h2>
+      
+      <h3>🚀 빠른 시작</h3>
+      <p>필수 항목(*)만 입력하고 <strong>"미리보기 생성"</strong> 버튼을 클릭하면 채용공고가 자동으로 생성됩니다.</p>
+      
+      <h3>🤖 AI 자동 입력 (선택사항)</h3>
+      <p>기존 채용공고 텍스트를 복사해서 붙여넣으면 AI가 자동으로 각 항목에 입력합니다.</p>
+      <ol>
+        <li>기존 채용공고 텍스트 복사</li>
+        <li>"AI 자동 입력" 박스에 붙여넣기</li>
+        <li>"🤖 텍스트 자동 분석" 버튼 클릭</li>
+        <li>자동으로 입력된 내용 확인 및 수정</li>
+      </ol>
+      
+      <div class="tip-box">
+        <strong>💡 팁</strong>
+        AI 기능은 인터넷이 연결된 환경에서만 작동합니다. 오류가 발생하면 수동으로 입력해주세요.
+      </div>
+      
+      <h3>📝 필수 입력 항목</h3>
+      <ul>
+        <li><strong>공고명</strong>: 예) 인권센터 계약직</li>
+        <li><strong>모집 부서</strong>: 예) 인권센터</li>
+        <li><strong>고용 형태</strong>: 정규직, 기간제, 무기계약직, 계약직 중 선택</li>
+        <li><strong>모집 인원</strong>: 예) 1명</li>
+        <li><strong>근무 시작 예정일</strong>: 날짜 선택</li>
+        <li><strong>지원 마감일</strong>: 날짜 선택</li>
+      </ul>
+      
+      <h3>✅ 미리보기 및 저장</h3>
+      <ol>
+        <li><strong>✓ 미리보기 생성</strong>: 오른쪽에서 실시간 미리보기</li>
+        <li><strong>📋 HTML 복사</strong>: HTML 코드를 클립보드에 복사 (에디터에 붙여넣기 가능)</li>
+        <li><strong>🖨️ 인쇄</strong>: 바로 인쇄</li>
+        <li><strong>💾 다운로드</strong>: HTML 파일로 저장</li>
+      </ol>
+      
+      <div class="tip-box">
+        <strong>⚠️ 주의사항</strong>
+        다운로드 전에 반드시 미리보기를 확인하세요!
+      </div>
+      
+      <h3>🆘 문제 해결</h3>
+      <p><strong>AI 기능 오류 시:</strong> 수동으로 입력해주세요.</p>
+      <p><strong>미리보기가 안 보일 때:</strong> 필수 항목(*)이 모두 입력되었는지 확인하세요.</p>
+      <p><strong>날짜 경고가 뜰 때:</strong> 마감일이 시작일보다 빠른지 확인하세요.</p>
+      
+      <hr style="margin: 2rem 0; border: none; border-top: 1px solid #eee;">
+      
+      <p style="text-align: center; color: #999; font-size: 12px;">
+        문의: 울산대학교 총무처 총무인사팀
+      </p>
+    </div>
+  </div>
+</div>
+
 <script>
-// 설정 함수들
-function openSettings() {
-  document.getElementById('settingsModal').style.display = 'flex';
-}
+// API 키
+const ANTHROPIC_API_KEY = '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';
 
-function closeSettings() {
-  document.getElementById('settingsModal').style.display = 'none';
-  document.getElementById('apiKeyInput').value = '';
-}
-
-function saveApiKey() {
-  const apiKey = document.getElementById('apiKeyInput').value;
-  if (!apiKey || apiKey.length < 20) {
-    alert('유효한 API 키를 입력해주세요.');
-    return;
+// 페이지 로드 시 초기화
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('guideBtn').addEventListener('click', openGuide);
+  document.getElementById('closeGuideBtn').addEventListener('click', closeGuide);
+  document.getElementById('aiAnalyzeBtn').addEventListener('click', analyzeTextWithAI);
+  document.getElementById('generateBtn').addEventListener('click', generatePreview);
+  document.getElementById('copyHtmlBtn').addEventListener('click', copyHTMLCode);
+  document.getElementById('printBtn').addEventListener('click', printPreview);
+  document.getElementById('downloadBtn').addEventListener('click', downloadHTML);
+  document.getElementById('resetBtn').addEventListener('click', resetForm);
+  
+  window.onclick = function(event) {
+    const modal = document.getElementById('guideModal');
+    if (event.target == modal) {
+      modal.style.display = 'none';
+    }
   }
-  localStorage.setItem('anthropic_api_key', apiKey);
-  alert('✅ API 키가 저장되었습니다!');
-  closeSettings();
-}
+});
 
-// AI 자동 분석 함수
+// AI 자동 분석
 async function analyzeTextWithAI() {
   const aiInput = document.getElementById('aiInput').value;
   const statusDiv = document.getElementById('aiStatus');
   
   if (!aiInput.trim()) {
     alert('텍스트를 입력해주세요.');
-    return;
-  }
-
-  const apiKey = localStorage.getItem('anthropic_api_key');
-  
-  if (!apiKey) {
-    alert('⚙️ 먼저 API 키를 설정해주세요.');
-    openSettings();
     return;
   }
 
@@ -549,15 +573,26 @@ async function analyzeTextWithAI() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-api-key': apiKey,
+        'x-api-key': ANTHROPIC_API_KEY,
         'anthropic-version': '2023-06-01'
       },
       body: JSON.stringify({
-        model: 'claude-opus-4-1',
-        max_tokens: 500,
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1024,
         messages: [{
           role: 'user',
-          content: `채용공고 텍스트를 분석하고 JSON으로 반환하세요:\n\n${aiInput}\n\n{"positionTitle":"","department":"","employmentType":"","headcount":"","startDate":"YYYY-MM-DD","deadline":"YYYY-MM-DD","position":"","salary":"","workHours":"","responsibilities":"","qualifications":"","preferences":"","documents":"","schedule":"","contact":""}`
+          content: `다음 채용공고 텍스트를 분석하여 JSON으로 추출하라.
+
+텍스트:
+${aiInput}
+
+JSON 형식:
+{"positionTitle":"","department":"","employmentType":"","headcount":"","startDate":"YYYY-MM-DD","deadline":"YYYY-MM-DD","position":"","salary":"","workHours":"","responsibilities":"","qualifications":"","preferences":"","documents":"","schedule":"","contact":""}
+
+규칙:
+- employmentType은 "정규직", "기간제", "무기계약직", "계약직" 중 하나
+- 날짜는 YYYY-MM-DD 형식
+- JSON만 출력`
         }]
       })
     });
@@ -571,26 +606,21 @@ async function analyzeTextWithAI() {
     const jsonMatch = content.match(/\{[\s\S]*\}/);
     
     if (!jsonMatch) {
-      throw new Error('유효한 응답을 받지 못했습니다.');
+      throw new Error('JSON 형식 오류');
     }
 
     const result = JSON.parse(jsonMatch[0]);
 
-    if (result.positionTitle) document.getElementById('positionTitle').value = result.positionTitle;
-    if (result.department) document.getElementById('department').value = result.department;
-    if (result.employmentType) document.getElementById('employmentType').value = result.employmentType;
-    if (result.headcount) document.getElementById('headcount').value = result.headcount;
-    if (result.startDate) document.getElementById('startDate').value = result.startDate;
-    if (result.deadline) document.getElementById('deadline').value = result.deadline;
-    if (result.position) document.getElementById('position').value = result.position;
-    if (result.salary) document.getElementById('salary').value = result.salary;
-    if (result.workHours) document.getElementById('workHours').value = result.workHours;
-    if (result.responsibilities) document.getElementById('responsibilities').value = result.responsibilities;
-    if (result.qualifications) document.getElementById('qualifications').value = result.qualifications;
-    if (result.preferences) document.getElementById('preferences').value = result.preferences;
-    if (result.documents) document.getElementById('documents').value = result.documents;
-    if (result.schedule) document.getElementById('schedule').value = result.schedule;
-    if (result.contact) document.getElementById('contact').value = result.contact;
+    const fields = ['positionTitle', 'department', 'employmentType', 'headcount', 'startDate', 'deadline', 
+                    'position', 'salary', 'workHours', 'responsibilities', 'qualifications', 'preferences', 
+                    'documents', 'schedule', 'contact'];
+    
+    fields.forEach(field => {
+      if (result[field]) {
+        const el = document.getElementById(field);
+        if (el) el.value = result[field];
+      }
+    });
 
     statusDiv.textContent = '✅ 완료!';
     document.getElementById('aiInput').value = '';
@@ -598,16 +628,298 @@ async function analyzeTextWithAI() {
 
   } catch (error) {
     statusDiv.textContent = '❌ 오류: ' + error.message;
+    console.error('Error:', error);
   }
 }
 
-function generatePreview() {
-  alert('미리보기 기능은 원본 파일에서 확인하세요.');
+// 입력값 검증
+function validateInputs(formData) {
+  const errors = [];
+  
+  if (formData.startDate && formData.deadline) {
+    const start = new Date(formData.startDate);
+    const deadline = new Date(formData.deadline);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    
+    if (deadline < today) {
+      errors.push('⚠️ 지원 마감일이 과거 날짜입니다.');
+    }
+    
+    if (deadline >= start) {
+      errors.push('⚠️ 지원 마감일은 근무 시작일보다 빠른 날짜여야 합니다.');
+    }
+  }
+  
+  return errors;
 }
 
+// 미리보기 생성
+function generatePreview() {
+  const formData = {
+    positionTitle: document.getElementById('positionTitle').value,
+    department: document.getElementById('department').value,
+    employmentType: document.getElementById('employmentType').value,
+    headcount: document.getElementById('headcount').value,
+    startDate: document.getElementById('startDate').value,
+    deadline: document.getElementById('deadline').value,
+    position: document.getElementById('position').value,
+    salary: document.getElementById('salary').value,
+    workHours: document.getElementById('workHours').value,
+    responsibilities: document.getElementById('responsibilities').value,
+    qualifications: document.getElementById('qualifications').value,
+    preferences: document.getElementById('preferences').value,
+    documents: document.getElementById('documents').value,
+    schedule: document.getElementById('schedule').value,
+    additionalInfo: document.getElementById('additionalInfo').value,
+    contact: document.getElementById('contact').value
+  };
+
+  if (!formData.positionTitle || !formData.department || !formData.employmentType || 
+      !formData.headcount || !formData.startDate || !formData.deadline) {
+    alert('필수 항목(*)을 모두 입력해주세요.');
+    return;
+  }
+
+  const errors = validateInputs(formData);
+  if (errors.length > 0) {
+    alert(errors.join('\n'));
+  }
+
+  const startDateFormatted = new Date(formData.startDate).toLocaleDateString('ko-KR', {year: 'numeric', month: 'long', day: 'numeric'});
+  const deadlineFormatted = new Date(formData.deadline).toLocaleDateString('ko-KR', {year: 'numeric', month: 'long', day: 'numeric'});
+  const today = new Date().toLocaleDateString('ko-KR', {year: 'numeric', month: 'long', day: 'numeric'});
+
+  let preview = `
+<div style="max-width: 800px; margin: 0 auto; font-family: 'Noto Sans KR', 'Malgun Gothic', sans-serif; line-height: 1.8; color: #333;">
+  <div style="text-align: center; border-bottom: 3px double #2B7A3D; padding-bottom: 1.5rem; margin-bottom: 2rem;">
+    <h1 style="font-size: 24px; color: #2B7A3D; margin-bottom: 0.5rem;">울산대학교 ${formData.positionTitle} 채용공고</h1>
+    <p style="font-size: 13px; color: #666;">공고일자: ${today}</p>
+  </div>
+
+  <table style="width: 100%; border-collapse: collapse; margin-bottom: 2rem; font-size: 14px;">
+    <tr style="background: #F0F7ED;">
+      <td style="padding: 12px; border: 1px solid #D4E8D1; font-weight: bold; width: 25%;">모집 분야</td>
+      <td style="padding: 12px; border: 1px solid #D4E8D1;">${formData.positionTitle}</td>
+    </tr>
+    <tr>
+      <td style="padding: 12px; border: 1px solid #D4E8D1; font-weight: bold;">근무 부서</td>
+      <td style="padding: 12px; border: 1px solid #D4E8D1;">${formData.department}</td>
+    </tr>
+    <tr style="background: #F0F7ED;">
+      <td style="padding: 12px; border: 1px solid #D4E8D1; font-weight: bold;">고용 형태</td>
+      <td style="padding: 12px; border: 1px solid #D4E8D1;">${formData.employmentType}</td>
+    </tr>
+    <tr>
+      <td style="padding: 12px; border: 1px solid #D4E8D1; font-weight: bold;">모집 인원</td>
+      <td style="padding: 12px; border: 1px solid #D4E8D1;">${formData.headcount}</td>
+    </tr>
+    ${formData.position ? `<tr style="background: #F0F7ED;">
+      <td style="padding: 12px; border: 1px solid #D4E8D1; font-weight: bold;">직급/직위</td>
+      <td style="padding: 12px; border: 1px solid #D4E8D1;">${formData.position}</td>
+    </tr>` : ''}
+    ${formData.salary ? `<tr>
+      <td style="padding: 12px; border: 1px solid #D4E8D1; font-weight: bold;">급여</td>
+      <td style="padding: 12px; border: 1px solid #D4E8D1;">${formData.salary}</td>
+    </tr>` : ''}
+    ${formData.workHours ? `<tr style="background: #F0F7ED;">
+      <td style="padding: 12px; border: 1px solid #D4E8D1; font-weight: bold;">근무 시간</td>
+      <td style="padding: 12px; border: 1px solid #D4E8D1;">${formData.workHours}</td>
+    </tr>` : ''}
+    <tr>
+      <td style="padding: 12px; border: 1px solid #D4E8D1; font-weight: bold;">근무 시작일</td>
+      <td style="padding: 12px; border: 1px solid #D4E8D1;">${startDateFormatted}</td>
+    </tr>
+    <tr style="background: #F0F7ED;">
+      <td style="padding: 12px; border: 1px solid #D4E8D1; font-weight: bold; color: #D4870E;">지원 마감</td>
+      <td style="padding: 12px; border: 1px solid #D4E8D1; font-weight: bold; color: #D4870E;">${deadlineFormatted} 18:00까지</td>
+    </tr>
+  </table>
+
+  ${formData.responsibilities ? `
+  <div style="margin-bottom: 2rem;">
+    <h3 style="font-size: 16px; color: #2B7A3D; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #D4E8D1;">주요 업무</h3>
+    <p style="white-space: pre-line; font-size: 14px; padding-left: 1rem;">${formData.responsibilities}</p>
+  </div>
+  ` : ''}
+
+  ${formData.qualifications ? `
+  <div style="margin-bottom: 2rem;">
+    <h3 style="font-size: 16px; color: #2B7A3D; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #D4E8D1;">지원 자격</h3>
+    <p style="white-space: pre-line; font-size: 14px; padding-left: 1rem;">${formData.qualifications}</p>
+  </div>
+  ` : ''}
+
+  ${formData.preferences ? `
+  <div style="margin-bottom: 2rem;">
+    <h3 style="font-size: 16px; color: #2B7A3D; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #D4E8D1;">우대 사항</h3>
+    <p style="white-space: pre-line; font-size: 14px; padding-left: 1rem;">${formData.preferences}</p>
+  </div>
+  ` : ''}
+
+  ${formData.documents ? `
+  <div style="margin-bottom: 2rem;">
+    <h3 style="font-size: 16px; color: #2B7A3D; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #D4E8D1;">제출 서류</h3>
+    <p style="white-space: pre-line; font-size: 14px; padding-left: 1rem;">${formData.documents}</p>
+  </div>
+  ` : ''}
+
+  ${formData.schedule ? `
+  <div style="margin-bottom: 2rem;">
+    <h3 style="font-size: 16px; color: #2B7A3D; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #D4E8D1;">전형 일정</h3>
+    <p style="white-space: pre-line; font-size: 14px; padding-left: 1rem;">${formData.schedule}</p>
+    <p style="font-size: 13px; color: #666; margin-top: 1rem; padding-left: 1rem;">※ 각 전형 결과는 합격·불합격자 모두에게 개별 통보합니다.</p>
+  </div>
+  ` : ''}
+
+  <div style="margin-bottom: 2rem;">
+    <h3 style="font-size: 16px; color: #2B7A3D; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #D4E8D1;">유의 사항</h3>
+    <ul style="font-size: 14px; padding-left: 2rem; line-height: 2;">
+      <li>허위 기재 시 합격이 취소됩니다.</li>
+    </ul>
+  </div>
+
+  ${formData.additionalInfo ? `
+  <div style="margin-bottom: 2rem;">
+    <h3 style="font-size: 16px; color: #2B7A3D; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #D4E8D1;">추가 정보</h3>
+    <p style="white-space: pre-line; font-size: 14px; padding-left: 1rem;">${formData.additionalInfo}</p>
+  </div>
+  ` : ''}
+
+  ${formData.contact ? `
+  <div style="text-align: center; padding: 1.5rem; background: #F9F9F9; border-radius: 8px;">
+    <p style="font-size: 14px; color: #666;">문의: ${formData.contact}</p>
+  </div>
+  ` : ''}
+</div>
+  `;
+
+  document.getElementById('previewContainer').innerHTML = preview;
+  document.getElementById('previewContainer').scrollTop = 0;
+}
+
+// 다운로드
+function downloadHTML() {
+  const previewContainer = document.getElementById('previewContainer');
+  if (previewContainer.innerHTML.includes('preview-empty')) {
+    alert('먼저 미리보기를 생성해주세요.');
+    return;
+  }
+  
+  const positionTitle = document.getElementById('positionTitle').value || '채용공고';
+  const fullHTML = `<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>울산대학교 ${positionTitle} 채용공고</title>
+</head>
+<body>
+${previewContainer.innerHTML}
+</body>
+</html>`;
+  
+  const blob = new Blob([fullHTML], { type: 'text/html;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `울산대_${positionTitle}_채용공고.html`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// HTML 코드 복사
+function copyHTMLCode() {
+  const previewContainer = document.getElementById('previewContainer');
+  if (previewContainer.innerHTML.includes('preview-empty')) {
+    alert('먼저 미리보기를 생성해주세요.');
+    return;
+  }
+  
+  const positionTitle = document.getElementById('positionTitle').value || '채용공고';
+  const fullHTML = `<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>울산대학교 ${positionTitle} 채용공고</title>
+</head>
+<body>
+${previewContainer.innerHTML}
+</body>
+</html>`;
+  
+  navigator.clipboard.writeText(fullHTML).then(() => {
+    alert('✅ HTML 코드가 클립보드에 복사되었습니다!\n\n에디터나 메모장에 붙여넣기(Ctrl+V) 하세요.');
+  }).catch(err => {
+    // 복사 실패 시 텍스트 영역 방식 사용
+    const textarea = document.createElement('textarea');
+    textarea.value = fullHTML;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    
+    try {
+      document.execCommand('copy');
+      alert('✅ HTML 코드가 클립보드에 복사되었습니다!');
+    } catch (err) {
+      alert('❌ 복사 실패. 수동으로 복사해주세요.');
+    }
+    
+    document.body.removeChild(textarea);
+  });
+}
+
+// 인쇄
+function printPreview() {
+  const previewContainer = document.getElementById('previewContainer');
+  if (previewContainer.innerHTML.includes('preview-empty')) {
+    alert('먼저 미리보기를 생성해주세요.');
+    return;
+  }
+  
+  const printWindow = window.open('', '', 'width=800,height=600');
+  printWindow.document.write(`
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="UTF-8">
+      <title>채용공고 인쇄</title>
+      <style>
+        @media print { @page { margin: 2cm; } body { font-family: 'Malgun Gothic', sans-serif; } }
+        body { font-family: 'Malgun Gothic', sans-serif; padding: 20px; }
+      </style>
+    </head>
+    <body>
+      ${previewContainer.innerHTML}
+      <script type="text/javascript">
+        window.onload = function() {
+          window.print();
+          window.onafterprint = function() { window.close(); }
+        }
+      <\/script>
+    </body>
+    </html>
+  `);
+  printWindow.document.close();
+}
+
+// 초기화
 function resetForm() {
-  document.getElementById('recruitmentForm').reset();
-  document.getElementById('previewContainer').innerHTML = '<div class="preview-empty">정보를 입력하고 "미리보기 생성" 버튼을 클릭하세요.</div>';
+  if (confirm('모든 입력 내용을 초기화하시겠습니까?')) {
+    document.getElementById('recruitmentForm').reset();
+    document.getElementById('aiInput').value = '';
+    document.getElementById('aiStatus').textContent = '';
+    document.getElementById('previewContainer').innerHTML = '<div class="preview-empty">정보를 입력하고 "미리보기 생성" 버튼을 클릭하세요.</div>';
+  }
+}
+
+// 가이드 모달
+function openGuide() {
+  document.getElementById('guideModal').style.display = 'block';
+}
+
+function closeGuide() {
+  document.getElementById('guideModal').style.display = 'none';
 }
 </script>
 
