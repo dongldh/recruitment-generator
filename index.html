@@ -699,27 +699,35 @@ function validateInputs(formData) {
 // 미리보기 생성
 function generatePreview() {
   const formData = {
-    positionTitle: document.getElementById('positionTitle').value,
-    department: document.getElementById('department').value,
-    employmentType: document.getElementById('employmentType').value,
-    headcount: document.getElementById('headcount').value,
-    startDate: document.getElementById('startDate').value,
-    deadline: document.getElementById('deadline').value,
-    position: document.getElementById('position').value,
-    salary: document.getElementById('salary').value,
-    workHours: document.getElementById('workHours').value,
-    responsibilities: document.getElementById('responsibilities').value,
-    qualifications: document.getElementById('qualifications').value,
-    preferences: document.getElementById('preferences').value,
-    documents: document.getElementById('documents').value,
-    schedule: document.getElementById('schedule').value,
-    additionalInfo: document.getElementById('additionalInfo').value,
-    contact: document.getElementById('contact').value
+    positionTitle: document.getElementById('positionTitle').value.trim(),
+    department: document.getElementById('department').value.trim(),
+    employmentType: document.getElementById('employmentType').value.trim(),
+    headcount: document.getElementById('headcount').value.trim(),
+    startDate: document.getElementById('startDate').value.trim(),
+    deadline: document.getElementById('deadline').value.trim(),
+    position: document.getElementById('position').value.trim(),
+    salary: document.getElementById('salary').value.trim(),
+    workHours: document.getElementById('workHours').value.trim(),
+    responsibilities: document.getElementById('responsibilities').value.trim(),
+    qualifications: document.getElementById('qualifications').value.trim(),
+    preferences: document.getElementById('preferences').value.trim(),
+    documents: document.getElementById('documents').value.trim(),
+    schedule: document.getElementById('schedule').value.trim(),
+    additionalInfo: document.getElementById('additionalInfo').value.trim(),
+    contact: document.getElementById('contact').value.trim()
   };
 
-  if (!formData.positionTitle || !formData.department || !formData.employmentType || 
-      !formData.headcount || !formData.startDate || !formData.deadline) {
-    alert('필수 항목(*)을 모두 입력해주세요.');
+  // 필수값 체크
+  const missingFields = [];
+  if (!formData.positionTitle) missingFields.push('공고명');
+  if (!formData.department) missingFields.push('모집 부서');
+  if (!formData.employmentType) missingFields.push('고용 형태');
+  if (!formData.headcount) missingFields.push('모집 인원');
+  if (!formData.startDate) missingFields.push('근무 시작 예정일');
+  if (!formData.deadline) missingFields.push('지원 마감일');
+  
+  if (missingFields.length > 0) {
+    alert('다음 필수 항목을 입력해주세요:\n\n' + missingFields.join('\n'));
     return;
   }
 
