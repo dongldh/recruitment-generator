@@ -46,7 +46,7 @@ class ProxyHandler(SimpleHTTPRequestHandler):
 텍스트:
 {text}
 
-JSON 형식:
+JSON 형식 (정확히 이 형식으로만 출력):
 {{"positionTitle":"","department":"","employmentType":"","headcount":"","startDate":"YYYY-MM-DD","deadline":"YYYY-MM-DD","position":"","salary":"","workHours":"","responsibilities":"","qualifications":"","preferences":"","documents":"","schedule":"","contact":""}}
 
 규칙:
@@ -55,7 +55,7 @@ JSON 형식:
 3. responsibilities, qualifications, preferences, documents, schedule 필드는 마크다운 리스트 형식으로 작성:
    - 여러 항목이 있으면 "- 항목1\\n- 항목2\\n- 항목3" 형식 사용
    - 번호가 있으면 "1. 항목1\\n2. 항목2\\n3. 항목3" 형식 사용
-4. JSON만 출력, 다른 설명 없이'''
+4. 반드시 JSON만 출력하고 다른 설명이나 마크다운 코드블록(```)을 사용하지 말 것'''
                         }]
                     }).encode('utf-8'),
                     headers={
@@ -68,13 +68,22 @@ JSON 형식:
                 with urllib.request.urlopen(request) as response:
                     result = response.read()
                     
+                    # 응답 로깅
+                    print('API 응답:', result.decode('utf-8')[:200])
+                    
                     self.send_response(200)
                     self.send_header('Content-Type', 'application/json')
                     self.end_headers()
                     self.wfile.write(result)
                     
             except Exception as e:
-                error_response = json.dumps({'error': str(e)}).encode('utf-8')
+                print('오류 발생:', str(e))
+                error_response = json.dumps({
+                    'error': {
+                        'message': str(e),
+                        'type': 'server_error'
+                    }
+                }).encode('utf-8')
                 self.send_response(500)
                 self.send_header('Content-Type', 'application/json')
                 self.end_headers()

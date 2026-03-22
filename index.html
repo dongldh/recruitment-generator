@@ -656,11 +656,27 @@ JSON 형식:
     }
 
     const data = await response.json();
-    const content = data.content[0].text;
+    
+    // 응답 내용 추출
+    let content;
+    if (data.content && Array.isArray(data.content) && data.content.length > 0) {
+      content = data.content[0].text;
+    } else if (data.text) {
+      content = data.text;
+    } else {
+      throw new Error('응답 형식 오류');
+    }
+    
+    // JSON 추출 - 마크다운 코드 블록 제거
+    content = content.replace(/```json\n?/g, '').replace(/```\n?/g, '');
+    
+    // JSON 객체 찾기
     const jsonMatch = content.match(/\{[\s\S]*\}/);
     
     if (!jsonMatch) {
-      throw new Error('JSON 형식 오류');
+      // JSON이 없으면 에러 메시지 표시
+      console.log('AI 응답:', content);
+      throw new Error('JSON 형식을 찾을 수 없습니다. AI가 일반 텍스트로 응답했습니다.');
     }
 
     const result = JSON.parse(jsonMatch[0]);
@@ -682,6 +698,7 @@ JSON 형식:
 
   } catch (error) {
     console.error('AI Error:', error);
+    console.error('Full error details:', error);
     
     // CORS 에러인 경우
     if (error.message === 'Failed to fetch' || error.name === 'TypeError') {
@@ -691,8 +708,15 @@ JSON 형식:
         '1. 프록시 서버로 실행: <code style="background:#f0f0f0;padding:2px 6px;border-radius:3px;">python server.py</code><br>' +
         '&nbsp;&nbsp;&nbsp;→ 브라우저에서 <code style="background:#f0f0f0;padding:2px 6px;border-radius:3px;">http://localhost:8000</code> 접속<br>' +
         '2. 또는 수동으로 입력하세요 (AI 없이도 모든 기능 정상 작동)</small>';
+    } else if (error.message.includes('JSON')) {
+      statusDiv.innerHTML = '❌ <strong>AI 응답 형식 오류</strong><br>' +
+        '<small style="color: #666;">AI가 예상과 다른 형식으로 응답했습니다.<br>' +
+        '다시 시도하거나 수동으로 입력해주세요.<br>' +
+        '<em>오류 내용: ' + error.message + '</em></small>';
     } else {
-      statusDiv.textContent = '❌ 오류: ' + error.message;
+      statusDiv.innerHTML = '❌ <strong>오류 발생</strong><br>' +
+        '<small style="color: #666;">' + error.message + '<br>' +
+        '수동으로 입력하거나 다시 시도해주세요.</small>';
     }
   }
 }
